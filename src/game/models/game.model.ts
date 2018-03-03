@@ -1,5 +1,5 @@
-import { TableModel } from './table.model';
 import { PlayerModel } from './player.model';
+import { TableModel } from './table.model';
 
 export class GameModel {
   public table: TableModel;

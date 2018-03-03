@@ -1,6 +1,6 @@
-import { NUMBERS } from '../constants/numbers';
 import { POSITIONS } from '../constants/bet-positions';
 import { TYPES } from '../constants/bet-types';
+import { NUMBERS } from '../constants/numbers';
 import { PlayerModel } from './player.model';
 import { SpinModel } from './spin.model';
 

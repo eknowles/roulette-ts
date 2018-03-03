@@ -1,4 +1,9 @@
-import { GameModel } from './models/game.model';
+import * as THREE from 'three';
+
+import { GameModel } from './game/models/game.model';
+import { App } from './ui/app';
+
+// require('style/main.scss');
 
 const game = new GameModel();
 
@@ -15,5 +20,7 @@ game.table.currentSpin.run();
 // start a new spin
 game.table.newSpin();
 
-console.dir(game);
+const app = new App();
 
+window.scene = app.scene;
+window.THREE = THREE;

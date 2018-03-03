@@ -1,5 +1,5 @@
 export class PlayerModel {
-  static ERROR_NEGATIVE_AMOUNT = 'Amount must be a positive number';
+  public static ERROR_NEGATIVE_AMOUNT = 'Amount must be a positive number';
 
   public name: string;
   public bank: number;

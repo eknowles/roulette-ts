@@ -1,9 +1,9 @@
-import { PlayerModel } from './player.model';
 import { POSITIONS } from '../constants/bet-positions';
 import { TYPES } from '../constants/bet-types';
+import { PlayerModel } from './player.model';
 
 export interface IBet {
-  [positionId: string]: number
+  [positionId: string]: number;
 }
 
 export class SpinModel {
@@ -56,7 +56,7 @@ export class SpinModel {
           const winnings = type.payout * stake;
           const playerReturnValue = winnings + stake;
 
-          console.info(`Position ${positionId}  of type ${type} is a winner - ${stake} => ${playerReturnValue}`);
+          // console.info(`Position ${positionId}  of type ${type} is a winner - ${stake} => ${playerReturnValue}`);
 
           this.player.win(playerReturnValue);
         }

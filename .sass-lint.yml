@@ -1,0 +1,22 @@
+options:
+  merge-default-rules: false
+files:
+  include: 'src/**/*.scss'
+rules:
+  indentation:
+    - 2
+    -
+      size: 'tab'
+  quotes:
+    - 2
+    -
+      style: 'single'
+  extends-before-mixins: 1
+  extends-before-declarations: 1
+  mixins-before-declarations: 1
+  empty-line-between-blocks: 0
+  no-empty-rulesets: 1
+  final-newline: 1
+  leading-zero: 1
+  space-after-comma: 1
+  trailing-semicolon: 1
