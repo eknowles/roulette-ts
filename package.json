@@ -6,9 +6,9 @@
   "private": true,
   "author": "Edward Knowles <mail@eknowles.com>",
   "scripts": {
-    "start": "npm run dev",
+    "start": "NODE_ENV=development npm run dev",
     "dev": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "NODE_ENV=production webpack --progress --mode production"
   },
   "dependencies": {},
   "devDependencies": {

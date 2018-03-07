@@ -2,8 +2,14 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const config = {
-  devtool: 'cheap-eval-source-map',
+  devtool: isProd ? false : 'source-map',
+
+  watchOptions: {
+    ignored: /node_modules/
+  },
 
   devServer: {
     contentBase: path.join(__dirname, 'dist/'),
@@ -26,7 +32,7 @@ const config = {
 
   target: 'web',
 
-  stats: 'normal',
+  stats: isProd ? 'verbose' : 'normal',
 
   resolve: {
     extensions: ['.ts', '.js', '.scss']
