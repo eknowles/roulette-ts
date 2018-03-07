@@ -1,4 +1,4 @@
-export class PlayerModel {
+export class Player {
   public static ERROR_NEGATIVE_AMOUNT = 'Amount must be a positive number';
 
   public name: string;
@@ -11,7 +11,7 @@ export class PlayerModel {
 
   public deposit(amount: number) {
     if (amount <= 0) {
-      throw new Error(PlayerModel.ERROR_NEGATIVE_AMOUNT);
+      throw new Error(Player.ERROR_NEGATIVE_AMOUNT);
     }
 
     this.bank += amount;
@@ -19,7 +19,7 @@ export class PlayerModel {
 
   public bet(amount: number) {
     if (amount <= 0) {
-      throw new Error(PlayerModel.ERROR_NEGATIVE_AMOUNT);
+      throw new Error(Player.ERROR_NEGATIVE_AMOUNT);
     }
 
     this.bank -= amount;

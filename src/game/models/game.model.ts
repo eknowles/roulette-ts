@@ -1,13 +1,13 @@
-import { PlayerModel } from './player.model';
-import { TableModel } from './table.model';
+import { Player } from './player.model';
+import { Table } from './table.model';
 
-export class GameModel {
-  public table: TableModel;
+export class Game {
+  public table: Table;
   public createdAt: number;
 
   constructor() {
-    const player = new PlayerModel();
-    this.table = new TableModel(player);
+    const player = new Player();
+    this.table = new Table(player);
     this.createdAt = Date.now();
   }
 }

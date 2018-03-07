@@ -1,18 +1,18 @@
 import { POSITIONS } from '../constants/bet-positions';
 import { TYPES } from '../constants/bet-types';
-import { PlayerModel } from './player.model';
+import { Player } from './player.model';
 
 export interface IBet {
   [positionId: string]: number;
 }
 
-export class SpinModel {
+export class Spin {
   public createdAt: number;
   public bets: IBet;
   public winner: null | number;
-  public player: PlayerModel;
+  public player: Player;
 
-  constructor(player: PlayerModel) {
+  constructor(player: Player) {
     this.createdAt = Date.now();
     this.player = player;
     this.bets = {};

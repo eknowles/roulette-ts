@@ -1,69 +1,86 @@
+import * as TWEEN from '@tweenjs/tween.js';
+import * as THREE from 'three';
 import {
   AxesHelper,
   Color, Group, Raycaster, Renderer, Scene, Vector2, WebGLRenderer,
 } from 'three';
 
-import * as TWEEN from '@tweenjs/tween.js';
-
+import { POSITIONS } from '../game/constants/bet-positions';
+import { TYPES } from '../game/constants/bet-types';
 import { NUMBERS } from '../game/constants/numbers';
 import { MainCamera } from './cameras/main.camera';
 import { NumberPosition } from './models/number-position';
 
 export class App {
+  public DEBUG = true;
   public camera: MainCamera;
   public scene: Scene;
   public renderer: Renderer;
   public raycaster: Raycaster;
   public mouse: Vector2;
-  public DEBUG = true;
 
   constructor() {
-    this.init();
-    this.render();
-    const tween = new TWEEN.Tween(this.camera.instance.position)
-      .to({x: 0, y: 0, z: 1}, 5000)
-      .start();
-  }
-
-  public init() {
-    // setup
     this.raycaster = new Raycaster();
     this.mouse = new Vector2();
     this.camera = new MainCamera();
     this.scene = new Scene();
-
-    // set scene bg
-    this.scene.background = new Color('white');
-
-    this.renderer = new WebGLRenderer({antialias: true});
+    this.renderer = new WebGLRenderer({antialias: true, alpha: true});
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Add numbers
-    const numbers = new Group();
-    NUMBERS.forEach((n, index) => {
-      const mesh = NumberPosition(n.number, n.color);
-      mesh.translateX(index * 0.1);
-      numbers.add(mesh);
-    });
-    this.scene.add(numbers);
+    this.setup();
 
-    // debug
-    const axesHelper = new AxesHelper(5);
-    this.scene.add(axesHelper);
+    // demo
+    this.addNumbers();
 
-    // attach to dom
-    document.body.appendChild(this.renderer.domElement);
+    this.render();
 
-    // events
+    // demo animation
+    const tween = new TWEEN.Tween(this.camera.instance.position)
+      .to({x: 0.7, y: 0.4, z: 0.7}, 10000)
+      .start();
+  }
+
+  public setup() {
+    // setup
+
+    if (this.DEBUG) {
+      const axesHelper = new THREE.AxesHelper(5);
+      this.scene.add(axesHelper);
+    }
+
+    document.getElementById('world').appendChild(this.renderer.domElement);
     window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
     window.addEventListener('resize', this.onWindowResize.bind(this), false);
     this.renderer.domElement.addEventListener('click', this.onClick.bind(this), false);
   }
 
+  public addNumbers() {
+    const numbers = new Group();
+    const itemsPerRow = 7;
+
+    let currentRow = 0;
+    let currentCol = 0;
+    NUMBERS
+      .forEach((n, index) => {
+      currentCol++;
+      if (!(index % itemsPerRow)) {
+        currentRow++;
+        currentCol = 1;
+      }
+      const mesh = NumberPosition(n.number, n.color);
+      const size = 0.1;
+      mesh.translateX((currentCol * size) - size);
+      mesh.translateZ((currentRow * size) - size);
+      numbers.add(mesh);
+    });
+
+    this.scene.add(numbers);
+  }
+
   public render() {
     requestAnimationFrame(this.render.bind(this));
     TWEEN.update();
-    this.camera.instance.lookAt(0, 0, 0);
+    this.camera.instance.lookAt(0.3, 0, 0.3);
     this.renderer.render(this.scene, this.camera.instance);
   }
 
@@ -80,5 +97,26 @@ export class App {
 
   public onClick(event: MouseEvent) {
     this.onMouseMove(event);
+    this.raycaster.setFromCamera(this.mouse, this.camera.instance);
+    const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+    const positionId = intersects.map((i) => i.object.name)[0];
+    const position = POSITIONS.find((p) => p.id === positionId);
+
+    const createChip = (pos) => {
+      const geometry = new THREE.CylinderGeometry(0.05, 0.05, 0.03, 32);
+      const material = new THREE.MeshBasicMaterial({color: 'white'});
+      const chip = new THREE.Mesh(geometry, material);
+      chip.position.x = pos.x;
+      chip.position.y = pos.y;
+      chip.position.z = pos.z;
+      return chip;
+    };
+
+    if (position) {
+      const type = TYPES.find((t) => t.id === position.betType);
+      const obj = this.scene.getObjectByName(positionId);
+      this.scene.add(createChip(obj.position));
+      console.log(type.id, positionId);
+    }
   }
 }

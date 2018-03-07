@@ -1,13 +1,52 @@
+@import 'vars';
+
 html, body {
   margin: 0;
   padding: 0;
+  color: white;
+  font-size: 11px;
 }
 
 .world {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #a90329;
-  @include filter-gradient(#a90329, #6d0019, horizontal);
-  @include background-image(radial-gradient(center, ellipse cover, #a90329 0%,#8f0222 44%,#6d0019 100%));
+  background-color: $background-color;
+}
+
+.title {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 3em;
+  letter-spacing: 1em;
+  pointer-events: none;
+  text-transform: uppercase;
+  animation-duration: 10s;
+  animation-name: win;
+}
+
+.display-1 {
+  font-family: $font-display-1;
+}
+
+.display-2 {
+  font-family: $font-display-2;
+}
+
+@keyframes win {
+  from {
+    letter-spacing: 0;
+    opacity: 0;
+    font-size: 5em;
+  }
+
+  to {
+    letter-spacing: 1em;
+    opacity: 1;
+    font-size: 3em;
+  }
 }

@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 
-import { GameModel } from './game/models/game.model';
+import { Game } from './game';
 import { App } from './ui/app';
 
-// require('style/main.scss');
+import './style/main.scss';
 
-const game = new GameModel();
+const game = new Game();
 
 // deposit money
 game.table.player.deposit(5000);

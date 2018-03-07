@@ -2,98 +2,77 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const plugins = [
-  new webpack.HotModuleReplacementPlugin(),
-  new HtmlWebpackPlugin({
-    title: '',
-    template: '!!ejs-loader!src/index.html',
-    hash: true,
-    filename: 'index.html',
-  })
-];
+const config = {
+  devtool: 'cheap-eval-source-map',
 
-var config = {
+  devServer: {
+    contentBase: path.join(__dirname, 'dist/'),
+    compress: true,
+    port: 3000,
+  },
+
   context: path.resolve('./src'),
 
   entry: {
-    app: './index.ts',
-    vendor: './vendor.ts'
+    main: './index.ts',
   },
 
   output: {
     path: path.resolve('./dist'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].bundle.map',
-    devtoolModuleFilenameTemplate: function(info) {
-      return 'file:///' + info.absoluteResourcePath;
-    }
-  },
-
-  performance: {
-    hints: 'warning', // enum
-    maxAssetSize: 200000, // int (in bytes),
-    maxEntrypointSize: 400000, // int (in bytes)
-    assetFilter: function(assetFilename) {
-      // Function predicate that provides asset filenames
-      return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
-    }
-  },
-
-  optimization: {
-    minimize: true,
-    runtimeChunk: true,
-    splitChunks: {
-      chunks: 'async',
-      minSize: 1000,
-      minChunks: 2,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true,
-      cacheGroups: {
-        default: {
-          minChunks: 1,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        }
-      }
-    }
+    devtoolModuleFilenameTemplate: info => 'file:///' + info.absoluteResourcePath
   },
 
   target: 'web',
 
-  stats: 'errors-only',
-
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.ts?$/,
-        exclude: ['node_modules'],
-        use: ['awesome-typescript-loader', 'source-map-loader']
-      },
-      {test: /\.html$/, loader: 'html-loader'},
-      {test: /\.css$/, loaders: ['style-loader', 'css-loader']},
-      {test: /\.scss$/, loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']}
-    ]
-  },
+  stats: 'normal',
 
   resolve: {
     extensions: ['.ts', '.js', '.scss']
   },
 
-  plugins: plugins,
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
+  },
 
-  devServer: {
-    contentBase: path.join(__dirname, 'dist/'),
-    compress: true,
-    port: 3000,
-    hot: true,
-    open: true
-  }
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        enforce: 'pre',
+        test: /\.ts?$/,
+        exclude: /'node_modules'/,
+        use: ['ts-loader', 'source-map-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      }
+    ]
+  },
+
+  plugins: [
+    new webpack.optimize.SplitChunksPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'App',
+      template: '!!ejs-loader!src/index.html',
+      hash: true,
+      filename: 'index.html',
+    })
+  ],
 };
 
 module.exports = config;
