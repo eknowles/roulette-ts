@@ -17,9 +17,7 @@
     "no-var-requires": false,
     "no-submodule-imports": false
   },
-  "rulesDirectory": [
-  ],
-  "cliOptions": {
-    "exclude": []
+  "compilerOptions": {
+    "module": "commonjs"
   }
 }

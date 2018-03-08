@@ -49,8 +49,8 @@ export class Spin {
     Object
       .keys(this.bets)
       .forEach((positionId) => {
-        const position = POSITIONS.find((position) => position.id === positionId);
-        const type = TYPES.find((type) => type.id === position.betType);
+        const position = POSITIONS.find((p) => p.id === positionId);
+        const type = TYPES.find((t) => t.id === position.typeId);
         if (position.winners.includes(this.winner)) {
           const stake = this.bets[positionId];
           const winnings = type.payout * stake;

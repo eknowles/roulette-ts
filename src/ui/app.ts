@@ -1,9 +1,5 @@
 import * as TWEEN from '@tweenjs/tween.js';
 import * as THREE from 'three';
-import {
-  AxesHelper,
-  Color, Group, Raycaster, Renderer, Scene, Vector2, WebGLRenderer,
-} from 'three';
 
 import { POSITIONS } from '../game/constants/bet-positions';
 import { TYPES } from '../game/constants/bet-types';
@@ -14,17 +10,17 @@ import { NumberPosition } from './models/number-position';
 export class App {
   public DEBUG = true;
   public camera: MainCamera;
-  public scene: Scene;
-  public renderer: Renderer;
-  public raycaster: Raycaster;
-  public mouse: Vector2;
+  public scene: THREE.Scene;
+  public renderer: THREE.Renderer;
+  public raycaster: THREE.Raycaster;
+  public mouse: THREE.Vector2;
 
   constructor() {
-    this.raycaster = new Raycaster();
-    this.mouse = new Vector2();
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
     this.camera = new MainCamera();
-    this.scene = new Scene();
-    this.renderer = new WebGLRenderer({antialias: true, alpha: true});
+    this.scene = new THREE.Scene();
+    this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.setup();
@@ -55,7 +51,7 @@ export class App {
   }
 
   public addNumbers() {
-    const numbers = new Group();
+    const numbers = new THREE.Group();
     const itemsPerRow = 7;
 
     let currentRow = 0;
@@ -113,10 +109,10 @@ export class App {
     };
 
     if (position) {
-      const type = TYPES.find((t) => t.id === position.betType);
+      const type = TYPES.find((t) => t.id === position.typeId);
       const obj = this.scene.getObjectByName(positionId);
       this.scene.add(createChip(obj.position));
-      console.log(type.id, positionId);
+      // console.log(type.id, positionId);
     }
   }
 }

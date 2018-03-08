@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 export const TYPES = [
   {id: 'ZERO', payout: 35, name: '0', desc: '0'},
   {id: 'DOUBLE_ZERO', payout: 35, name: '00', desc: '00'},

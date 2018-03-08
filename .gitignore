@@ -1,8 +1,9 @@
-/.idea
+.idea
 *.log
 
 /node_modules
-/dist
+dist
 
 # webpack bundle stats
-/stats.json
+stats.json
+coverage

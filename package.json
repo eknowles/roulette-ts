@@ -6,14 +6,35 @@
   "private": true,
   "author": "Edward Knowles <mail@eknowles.com>",
   "scripts": {
-    "start": "NODE_ENV=development npm run dev",
-    "dev": "webpack-dev-server --mode development",
-    "build": "NODE_ENV=production webpack --progress --mode production"
+    "start": "npm run build",
+    "test": "jest",
+    "pretest": "npm run lint",
+    "dev": "NODE_ENV=development webpack-dev-server --mode development",
+    "build": "NODE_ENV=production webpack --progress --mode production",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": ".*\\.spec.(ts|tsx|js)$"
   },
   "dependencies": {},
   "devDependencies": {
     "@tweenjs/tween.js": "^17.2.0",
     "@types/jasmine": "^2.8.6",
+    "@types/jest": "^22.2.0",
     "@types/lodash": "^4.14.104",
     "@types/three": "^0.89.11",
     "babel-core": "^6.26.0",
@@ -25,12 +46,14 @@
     "eslint": "^4.18.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.0.5",
+    "jest": "^22.4.2",
     "lodash": "^4.17.5",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.7",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.2",
     "three": "^0.90.0",
+    "ts-jest": "^22.4.1",
     "ts-loader": "^4.0.1",
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",

@@ -9,7 +9,6 @@ docs
 doc
 website
 images
-assets
 
 # examples
 example
@@ -43,3 +42,4 @@ wercker.yml
 
 # misc
 *.md
+LICENSE
