@@ -6,5 +6,7 @@ notifications:
 install:
   - yarn
 script:
-  - npm run build
-  - npm run coveralls
+  - npm test
+  - npm start
+after_script:
+  - 'cat coverage/lcov.info | ./node_modules/.bin/coveralls'

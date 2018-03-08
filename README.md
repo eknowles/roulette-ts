@@ -22,4 +22,3 @@ Build a production bundle to `./dist`
 ```bash
 $ yarn build
 ```
-
