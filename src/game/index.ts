@@ -1,11 +1,11 @@
-import { Game } from './models/game.model';
-import { Player } from './models/player.model';
-import { Spin } from './models/spin.model';
-import { Table } from './models/table.model';
+import { Game } from './models/game';
+import { Player } from './models/player';
+import { Round } from './models/round';
+import { Table } from './models/table';
 
 export {
   Game,
   Player,
-  Spin,
+  Round,
   Table,
 };

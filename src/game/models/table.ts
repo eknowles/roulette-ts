@@ -1,25 +1,25 @@
-import { POSITIONS } from '../constants/bet-positions';
-import { TYPES } from '../constants/bet-types';
 import { NUMBERS } from '../constants/numbers';
-import { Player } from './player.model';
-import { Spin } from './spin.model';
+import { POSITIONS } from '../constants/positions';
+import { TYPES } from '../constants/types';
+import { Player } from './player';
+import { Round } from './round';
 
 export class Table {
   public numbers = NUMBERS;
   public positions = POSITIONS;
   public types = TYPES;
   public player: Player;
-  public currentSpin: Spin;
-  public previousSpins: Spin[];
+  public currentSpin: Round;
+  public previousSpins: Round[];
 
   constructor(player: Player) {
     this.player = player;
-    this.currentSpin = new Spin(this.player);
+    this.currentSpin = new Round(this.player);
     this.previousSpins = [];
   }
 
   public newSpin() {
     this.previousSpins.push(this.currentSpin);
-    this.currentSpin = new Spin(this.player);
+    this.currentSpin = new Round(this.player);
   }
 }

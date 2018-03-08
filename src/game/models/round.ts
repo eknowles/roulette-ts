@@ -1,12 +1,13 @@
-import { POSITIONS } from '../constants/bet-positions';
-import { TYPES } from '../constants/bet-types';
-import { Player } from './player.model';
+import { POSITIONS } from '../constants/positions';
+import { TYPES } from '../constants/types';
+import { Player } from './player';
 
 export interface IBet {
   [positionId: string]: number;
 }
 
-export class Spin {
+export class Round {
+  public static ERROR_NO_FUNDS = 'No Funds Available';
   public createdAt: number;
   public bets: IBet;
   public winner: null | number;
@@ -20,13 +21,19 @@ export class Spin {
   }
 
   public removePosition(positionId: string) {
-    this.player.returnBet(this.bets[positionId]);
+    const amount = this.bets[positionId];
+
+    if (!amount) {
+      return;
+    }
+
+    this.player.returnBet(amount);
     delete this.bets[positionId];
   }
 
   public placeBet(amount: number, positionId: string) {
     if (this.player.bank < amount) {
-      return;
+      throw new Error(Round.ERROR_NO_FUNDS);
     }
 
     if (this.bets[positionId]) {
@@ -63,6 +70,10 @@ export class Spin {
       });
   }
 
+  /**
+   * Get a random number between 0 and 36
+   * @return {Promise<number>}
+   */
   private getNumber(): Promise<number> {
     return new Promise((resolve, reject) => {
       resolve(5); // lol

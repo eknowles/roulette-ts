@@ -1,61 +1,54 @@
-const webpack = require('webpack');
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+'use strict';
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
   devtool: isProd ? false : 'source-map',
-
   watchOptions: {
     ignored: /node_modules/
   },
-
   devServer: {
-    contentBase: path.join(__dirname, 'dist/'),
     compress: true,
-    port: 3000,
+    contentBase: path.join(__dirname, 'dist/'),
+    port: 3000
   },
-
   context: path.resolve('./src'),
-
   entry: {
-    main: './index.ts',
+    main: './index.ts'
   },
-
   output: {
-    path: path.resolve('./dist'),
     filename: '[name].bundle.js',
+    path: path.resolve('./dist'),
     sourceMapFilename: '[name].bundle.map',
-    devtoolModuleFilenameTemplate: info => 'file:///' + info.absoluteResourcePath
+    devtoolModuleFilenameTemplate: function(info) {
+      return 'file:///' + info.absoluteResourcePath;
+    }
   },
-
   target: 'web',
-
-  stats: isProd ? 'verbose' : 'normal',
-
+  stats: isProd ? 'normal' : 'errors-only',
   resolve: {
     extensions: ['.ts', '.js', '.scss']
   },
-
   optimization: {
     splitChunks: {
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all"
+          name: 'vendors',
+          chunks: 'all'
         }
       }
     }
   },
-
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: 'babel-loader'
       },
       {
         enforce: 'pre',
@@ -66,19 +59,17 @@ const config = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
-      }
+      },
     ]
   },
-
   plugins: [
     new webpack.optimize.SplitChunksPlugin(),
     new HtmlWebpackPlugin({
-      title: 'App',
-      template: '!!ejs-loader!src/index.html',
-      hash: true,
       filename: 'index.html',
-    })
-  ],
+      hash: true,
+      template: '!!ejs-loader!src/index.html',
+      title: 'App'
+    }),
+  ]
 };
-
-module.exports = config;
+exports['default'] = config;

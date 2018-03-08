@@ -1,26 +1,38 @@
 import * as TWEEN from '@tweenjs/tween.js';
-import * as THREE from 'three';
 
-import { POSITIONS } from '../game/constants/bet-positions';
-import { TYPES } from '../game/constants/bet-types';
+import {
+  AxesHelper,
+  CylinderGeometry,
+  Group,
+  Mesh,
+  MeshBasicMaterial,
+  Raycaster,
+  Renderer,
+  Scene,
+  Vector2,
+  WebGLRenderer,
+} from 'three';
+
 import { NUMBERS } from '../game/constants/numbers';
+import { POSITIONS } from '../game/constants/positions';
+import { TYPES } from '../game/constants/types';
 import { MainCamera } from './cameras/main.camera';
 import { NumberPosition } from './models/number-position';
 
 export class App {
   public DEBUG = true;
   public camera: MainCamera;
-  public scene: THREE.Scene;
-  public renderer: THREE.Renderer;
-  public raycaster: THREE.Raycaster;
-  public mouse: THREE.Vector2;
+  public scene: Scene;
+  public renderer: Renderer;
+  public raycaster: Raycaster;
+  public mouse: Vector2;
 
   constructor() {
-    this.raycaster = new THREE.Raycaster();
-    this.mouse = new THREE.Vector2();
+    this.raycaster = new Raycaster();
+    this.mouse = new Vector2();
     this.camera = new MainCamera();
-    this.scene = new THREE.Scene();
-    this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    this.scene = new Scene();
+    this.renderer = new WebGLRenderer({antialias: true, alpha: true});
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.setup();
@@ -38,10 +50,8 @@ export class App {
 
   public setup() {
     // setup
-
     if (this.DEBUG) {
-      const axesHelper = new THREE.AxesHelper(5);
-      this.scene.add(axesHelper);
+      this.scene.add(new AxesHelper(5));
     }
 
     document.getElementById('world').appendChild(this.renderer.domElement);
@@ -51,24 +61,24 @@ export class App {
   }
 
   public addNumbers() {
-    const numbers = new THREE.Group();
+    const numbers = new Group();
     const itemsPerRow = 7;
 
     let currentRow = 0;
     let currentCol = 0;
     NUMBERS
       .forEach((n, index) => {
-      currentCol++;
-      if (!(index % itemsPerRow)) {
-        currentRow++;
-        currentCol = 1;
-      }
-      const mesh = NumberPosition(n.number, n.color);
-      const size = 0.1;
-      mesh.translateX((currentCol * size) - size);
-      mesh.translateZ((currentRow * size) - size);
-      numbers.add(mesh);
-    });
+        currentCol++;
+        if (!(index % itemsPerRow)) {
+          currentRow++;
+          currentCol = 1;
+        }
+        const mesh = NumberPosition(n.number, n.color);
+        const size = 0.1;
+        mesh.translateX((currentCol * size) - size);
+        mesh.translateZ((currentRow * size) - size);
+        numbers.add(mesh);
+      });
 
     this.scene.add(numbers);
   }
@@ -99,9 +109,9 @@ export class App {
     const position = POSITIONS.find((p) => p.id === positionId);
 
     const createChip = (pos) => {
-      const geometry = new THREE.CylinderGeometry(0.05, 0.05, 0.03, 32);
-      const material = new THREE.MeshBasicMaterial({color: 'white'});
-      const chip = new THREE.Mesh(geometry, material);
+      const geometry = new CylinderGeometry(0.05, 0.05, 0.03, 32);
+      const material = new MeshBasicMaterial({color: 'white'});
+      const chip = new Mesh(geometry, material);
       chip.position.x = pos.x;
       chip.position.y = pos.y;
       chip.position.z = pos.z;

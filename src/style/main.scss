@@ -1,10 +1,12 @@
 @import 'vars';
+@import 'keybinds';
 
 html, body {
   margin: 0;
   padding: 0;
   color: white;
   font-size: 11px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .world {
@@ -15,39 +17,3 @@ html, body {
   background-color: $background-color;
 }
 
-.title {
-  position: absolute;
-  z-index: 1;
-  top: 20%;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 3em;
-  letter-spacing: 1em;
-  pointer-events: none;
-  text-transform: uppercase;
-  animation-duration: 10s;
-  animation-name: win;
-}
-
-.display-1 {
-  font-family: $font-display-1;
-}
-
-.display-2 {
-  font-family: $font-display-2;
-}
-
-@keyframes win {
-  from {
-    letter-spacing: 0;
-    opacity: 0;
-    font-size: 5em;
-  }
-
-  to {
-    letter-spacing: 1em;
-    opacity: 1;
-    font-size: 3em;
-  }
-}
