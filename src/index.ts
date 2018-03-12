@@ -1,5 +1,3 @@
-import * as THREE from 'three';
-
 import { Game } from './game';
 import { App } from './ui/app';
 
@@ -20,7 +18,4 @@ game.table.currentSpin.run();
 // start a new spin
 game.table.newSpin();
 
-const app = new App();
-
-window.scene = app.scene;
-window.THREE = THREE;
+const app = new App('world');

@@ -1,0 +1,23 @@
+.bank {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  background-color: rgba(black, .5);
+  border-radius: 1em;
+  padding: 1em;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  font-family: Baskerville, sans-serif;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 400ms ease-in-out;
+  &.visible {
+    opacity: 1;
+  }
+  &-balance {
+    font-size: 1.3em;
+    color: white;
+  }
+}

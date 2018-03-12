@@ -1,5 +1,7 @@
 @import 'vars';
 @import 'keybinds';
+@import 'bank';
+@import 'deposit';
 
 html, body {
   margin: 0;
@@ -7,6 +9,7 @@ html, body {
   color: white;
   font-size: 11px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  background-color: $background-color;
 }
 
 .world {
@@ -14,6 +17,22 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-color: $background-color;
 }
 
+.button {
+  background: #d9a234 linear-gradient(to bottom, #d9a234, #6b4400);
+  border-radius: 10px;
+  color: white;
+  font-size: 1em;
+  padding: .5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  transition: all 1s ease-in-out;
+}
+
+.button:hover {
+  background: #6b4400 linear-gradient(to bottom, #6b4400, #d9a234);
+  text-decoration: none;
+  cursor: pointer;
+}
