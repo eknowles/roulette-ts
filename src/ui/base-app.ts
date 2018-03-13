@@ -1,18 +1,30 @@
-import { Raycaster, Renderer, Scene, Vector2, WebGLRenderer } from 'three';
+import {
+  Fog,
+  PCFSoftShadowMap,
+  Raycaster,
+  Scene,
+  Vector2,
+  WebGLRenderer,
+} from 'three';
+
+import dat from 'dat.gui';
 
 import { MainCamera } from './cameras/main.camera';
+import { Lighting } from './lighting';
 
 export abstract class BaseApp {
   public static ERROR_NO_ELEMENT = 'Could not find DOM element';
+  public elementId: string;
   public camera: MainCamera;
   public scene: Scene;
-  public renderer: Renderer;
+  public renderer: WebGLRenderer;
   public raycaster: Raycaster;
   public mouse: Vector2;
-  public elementId: string;
   public document: Document;
   public window: Window;
   public element: HTMLElement;
+  public gui: any;
+  public lighting: Lighting;
 
   /**
    * @param {string} elementId DOM element id
@@ -29,15 +41,33 @@ export abstract class BaseApp {
       throw new Error(BaseApp.ERROR_NO_ELEMENT);
     }
 
+    this.init();
+  }
+
+  public init() {
+    // input
+    this.gui = new dat.GUI();
     this.raycaster = new Raycaster();
     this.mouse = new Vector2();
     this.camera = new MainCamera();
-    this.scene = new Scene();
+
+    // custom
+    this.lighting = new Lighting();
+
+    // renderer
     this.renderer = new WebGLRenderer({antialias: true, alpha: true});
-
+    this.renderer.setPixelRatio(this.window.devicePixelRatio);
     this.renderer.setSize(this.window.innerWidth, this.window.innerHeight);
-
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = PCFSoftShadowMap;
+    this.renderer.gammaInput = true;
+    this.renderer.gammaOutput = true;
     this.attachRenderer();
+
+    // scene
+    this.scene = new Scene();
+    this.scene.fog = new Fog(0x000000, 3, 6);
+    this.scene.add(...this.lighting.getObject());
     this.addEventListeners();
   }
 

@@ -1,8 +1,8 @@
 import { Easing, Tween } from '@tweenjs/tween.js';
 
-export function tweenPosition({x, y, z}, duration = 5000) {
+export function tweenPosition(pos, duration = 5000) {
   const tween = new Tween(this.camera.instance.position)
-    .to({x, y, z}, duration)
+    .to(pos, duration)
     .easing(Easing.Cubic.Out)
     .start();
 }

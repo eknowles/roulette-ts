@@ -1,4 +1,5 @@
-import { Group, Mesh, MeshBasicMaterial, PlaneGeometry } from 'three';
+import { Group, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
+
 import { NUMBERS } from '../../game/constants/numbers';
 
 export const DEFAULT_CELL_WIDTH = .2;
@@ -11,16 +12,26 @@ export function NumberPosition(number: number, color: string): Mesh {
     DEFAULT_CELL_DEPTH,
   );
 
-  const materialParams = {
-    color: color.toLowerCase(),
-    wireframe: true,
-  };
+  geometry.rotateX(Math.PI / -2);
 
-  const material = new MeshBasicMaterial(materialParams);
+  const material = new MeshLambertMaterial({
+    color: color.toLowerCase(),
+    dithering: true,
+    wireframe: false,
+  });
   const mesh = new Mesh(geometry, material);
+
+  mesh.userData = {
+    positionId: `P_${number}`,
+    positionType: 'STRAIGHT',
+    type: 'position',
+  };
 
   // set mesh name so we can query it later
   mesh.name = `P_${number === 0 ? 'ZERO' : number}`;
+
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
 
   return mesh;
 }
@@ -45,8 +56,14 @@ export function generateNumberGrid(): Group {
   zero.geometry = new PlaneGeometry(
     DEFAULT_CELL_WIDTH * itemsPerRow,
     DEFAULT_CELL_DEPTH,
+    2,
   );
 
+  // give the zero position a pointy bit at the top
+  zero.geometry.vertices[1].y += DEFAULT_CELL_DEPTH;
+  zero.geometry.verticesNeedUpdate = true;
+
+  zero.geometry.rotateX(Math.PI / -2);
   zero.translateX(DEFAULT_CELL_WIDTH);
   zero.translateZ(-(DEFAULT_CELL_DEPTH + DOZEN_SEPERATION));
 
