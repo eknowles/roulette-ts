@@ -116,5 +116,22 @@ describe('Class', () => {
         });
       });
     });
+
+    describe('processWin()', () => {
+      let round;
+
+      beforeEach(() => {
+        round = new Round(player);
+        round.player.win = jest.fn();
+      });
+
+      // TODO add tests for every combination of bets
+      it('should update the player with the correct value', () => {
+        round.bets = {P_ZERO: 1};
+        round.winner = 0;
+        round.processWin();
+        expect(round.player.win).toHaveBeenCalledWith(36);
+      });
+    });
   });
 });
