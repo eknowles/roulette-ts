@@ -7,7 +7,7 @@ export class LoadingBar {
   public static CLASS_NAME = 'loading-bar';
   public static CLASS_NAME_ACTIVE = `${LoadingBar.CLASS_NAME}--active`;
   public static calculatePecentage(items: number, total: number) {
-    return Math.round((total / items) * 100);
+    return Math.round((items / total) * 100);
   }
   public id: string;
   public bar: HTMLElement | null;

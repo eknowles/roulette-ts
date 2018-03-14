@@ -16,6 +16,12 @@ describe('Class', () => {
         expect(loading.bar.className).toBe(LoadingBar.CLASS_NAME);
       });
     });
+    describe('calculatePercentage()', () => {
+      it('should return a rounded string percentage value', () => {
+        expect(LoadingBar.calculatePecentage(2, 4)).toBe(50);
+        expect(LoadingBar.calculatePecentage(1.9999999, 4)).toBe(50);
+      });
+    });
     describe('showBar()', () => {
       it('should add the active classname to the bar element', () => {
         const loading = new LoadingBar();
