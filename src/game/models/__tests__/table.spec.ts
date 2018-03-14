@@ -23,26 +23,20 @@ describe('Class', () => {
     });
 
     describe('newSpin()', () => {
-      it('should ...', () => {
-        // todo add tests
+      it('should push the currentSpin into previousSpins', () => {
+        const table = new Table(player);
+        const spin = table.currentSpin;
+        table.newSpin();
+        expect(table.previousSpins.length).toBe(1);
+        expect(table.previousSpins[0]).toBe(spin);
       });
-    });
-
-    describe('processWin()', () => {
-      it('should ...', () => {
-        // todo add tests
-      });
-    });
-
-    describe('getNumber()', () => {
-      it('should ...', () => {
-        // todo add tests
-      });
-    });
-
-    describe('run()', () => {
-      it('should ...', () => {
-        // todo add tests
+      it('should create a new spin and replace currentSpin', () => {
+        const table = new Table(player);
+        const previous = table.currentSpin;
+        table.newSpin();
+        const current = table.currentSpin;
+        expect(previous).not.toBe(current);
+        expect(table.currentSpin instanceof Round).toBeTruthy();
       });
     });
   });
