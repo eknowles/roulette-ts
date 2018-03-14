@@ -3,14 +3,14 @@ import { Box3, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
 
 import { POSITIONS } from '../game/constants/positions';
 import { TYPES } from '../game/constants/types';
+import { BaseApp } from './base';
 import * as CameraUtils from './cameras/utils';
-import { CELL_SEPERATION, generateNumberGrid } from './models/number-position';
-
-import { BaseApp } from './base-app';
-import { Z_INDEX_BORDER } from './constants';
+import { MESH_TYPE_POSITION, Z_INDEX_BORDER } from './constants';
 import { LoadingBar } from './loaders/loading-bar';
 import { createChip } from './models/chip';
+import { CELL_SEPERATION, generateNumberGrid } from './models/number-position';
 import { createFelt } from './models/table-cloth';
+import { getIntersectionByType } from './raycaster/evaluate-intersects';
 
 export class App extends BaseApp {
   private loadingBar: LoadingBar;
@@ -80,24 +80,20 @@ export class App extends BaseApp {
   }
 
   /**
-   * Handle click event on canvas
+   * Handle click event on canvas.
+   * Type of click interactions include either select value chip or placement
    * @param {MouseEvent} event
    */
   public onClick(event: MouseEvent) {
     this.onMouseMove(event);
     this.raycaster.setFromCamera(this.mouse, this.camera.instance);
+
     const intersects = this.raycaster.intersectObjects(this.scene.children, true);
-    const positionId = intersects
-      .find((intersect) => {
-        return intersect.object.userData.type === 'position';
-      })
-      .object.userData.positionId;
-
-    const position = POSITIONS.find((p) => p.id === positionId);
-
+    const positionObject = getIntersectionByType(intersects, MESH_TYPE_POSITION);
+    const position = POSITIONS.find((p) => p.id === positionObject.userData.positionId);
     if (position) {
       const type = TYPES.find((t) => t.id === position.typeId);
-      const obj = this.scene.getObjectByName(positionId);
+      const obj = this.scene.getObjectByName(positionObject.userData.positionId);
       this.scene.add(createChip(obj.position));
       // console.log(type.id, positionId);
     }

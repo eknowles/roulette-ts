@@ -1,7 +1,7 @@
 import { Group, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
 
 import { NUMBERS } from '../../game/constants/numbers';
-import { NUMBER_COLORS, Z_INDEX_NUMBERS } from '../constants';
+import { MESH_TYPE_POSITION, NUMBER_COLORS, Z_INDEX_NUMBERS } from '../constants';
 
 export const DEFAULT_CELL_WIDTH = .13;
 export const DEFAULT_CELL_DEPTH = .1;
@@ -27,7 +27,7 @@ export function NumberPosition(number: number, color: string): Mesh {
   mesh.userData = {
     positionId: `P_${number === 0 ? 'ZERO' : number}`,
     positionType: 'STRAIGHT',
-    type: 'position',
+    type: MESH_TYPE_POSITION,
   };
 
   // set mesh name so we can query it later

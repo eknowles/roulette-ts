@@ -16,6 +16,9 @@ export interface IAppConfig {
   readonly drawHelpers?: boolean;
 }
 
+/**
+ * This class is the base for a three js app
+ */
 export abstract class BaseApp {
   public static ERROR_NO_ELEMENT = 'Could not find DOM element';
   public elementId: string;
