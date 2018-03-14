@@ -4,16 +4,16 @@ describe('Class', () => {
   describe('LoadingBar', () => {
     describe('constructor', () => {
       it('should generate an id property', () => {
-        const bar = new LoadingBar();
-        expect(bar.id).toBeDefined();
+        const loading = new LoadingBar();
+        expect(loading.id).toBeDefined();
       });
       it('should define the bar property', () => {
-        const bar = new LoadingBar();
-        expect(bar.bar).toBeDefined();
+        const loading = new LoadingBar();
+        expect(loading.bar).toBeDefined();
       });
       it('should set the bars class to the CLASS_NAME property', () => {
-        const bar = new LoadingBar();
-        expect(bar.bar.className).toBe(LoadingBar.CLASS_NAME);
+        const loading = new LoadingBar();
+        expect(loading.bar.className).toBe(LoadingBar.CLASS_NAME);
       });
     });
     describe('showBar()', () => {
