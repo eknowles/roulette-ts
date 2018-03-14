@@ -4,14 +4,13 @@ import { DefaultLoadingManager } from 'three';
  * This class handles the UI for the loading bar at the top of the page
  */
 export class LoadingBar {
+  public static CLASS_NAME = 'loading-bar';
+  public static CLASS_NAME_ACTIVE = `${LoadingBar.CLASS_NAME}--active`;
   public static calculatePecentage(items: number, total: number) {
     return Math.round((total / items) * 100);
   }
-
-  private static CLASS_NAME = 'loading-bar';
-  private static CLASS_NAME_ACTIVE = `${LoadingBar.CLASS_NAME}--active`;
-  private bar: HTMLElement | null;
-  private id: string;
+  public id: string;
+  public bar: HTMLElement | null;
 
   constructor() {
     this.id = `loading-bar-${Math.round(Math.random() * 1000)}`;
@@ -31,7 +30,7 @@ export class LoadingBar {
     this.bar.classList.remove(LoadingBar.CLASS_NAME_ACTIVE);
   }
 
-  public setProgress(pct) {
+  public setProgress(pct: number) {
     this.bar.style.width = `${pct}%`;
   }
 
