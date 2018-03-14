@@ -8,12 +8,16 @@ import { CELL_SEPERATION, generateNumberGrid } from './models/number-position';
 
 import { BaseApp } from './base-app';
 import { Z_INDEX_BORDER } from './constants';
+import { LoadingBar } from './loaders/loading-bar';
 import { createChip } from './models/chip';
 import { createFelt } from './models/table-cloth';
 
 export class App extends BaseApp {
+  private loadingBar: LoadingBar;
+
   constructor(elementId: string, config) {
     super(elementId, config);
+    this.loadingBar = new LoadingBar();
 
     this.addAppEventListeners();
 

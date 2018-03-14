@@ -1,0 +1,16 @@
+.loading-bar {
+  position: fixed;
+  top: -$loading-bar-height;
+  left: 0;
+  width: 0;
+  height: $loading-bar-height;
+  background: $loading-bar-color;
+  box-shadow: 0 0 10px 0 rgba($loading-bar-color, .75);
+  border-bottom-right-radius: $loading-bar-height;
+  transition: all 250ms ease-in-out;
+  opacity: 0;
+  &--active {
+    transform: translateY($loading-bar-height);
+    opacity: 1;
+  }
+}
