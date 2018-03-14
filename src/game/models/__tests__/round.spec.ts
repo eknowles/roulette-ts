@@ -20,6 +20,10 @@ describe('Class', () => {
     });
 
     describe('removePosition()', () => {
+      it('should return undefined if no amount placed on position', () => {
+        const round = new Round(player);
+        expect(round.removePosition('')).toBe(undefined);
+      });
       it('should delete key from bets', () => {
         const round = new Round(player);
         const amount = 10;
@@ -78,6 +82,38 @@ describe('Class', () => {
         round.player.bet = jest.fn();
         round.placeBet(amount, positionId); // bet another 10 credits
         expect(round.player.bet).toHaveBeenCalledWith(amount);
+      });
+    });
+
+    describe('run()', () => {
+      let round;
+      let winningNumber;
+
+      beforeEach(() => {
+        round = new Round(player);
+        winningNumber = 10;
+
+        round.getNumber = jest.fn().mockReturnValue(Promise.resolve(winningNumber));
+        round.processWin = jest.fn();
+        round.run();
+      });
+      it('should call getNumber and set the winner to the response', () => {
+        expect(round.getNumber).toHaveBeenCalledTimes(1);
+      });
+      it('should set a winner', () => {
+        expect(round.winner).toBe(winningNumber);
+      });
+      it('should call processWin()', () => {
+        expect(round.processWin).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('getNumber()', () => {
+      it('should return a number', () => {
+        (new Round(player)).getNumber().then((number) => {
+          expect(number).toBeDefined();
+          expect(typeof number).toBe('number');
+        });
       });
     });
   });

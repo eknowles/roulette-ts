@@ -52,6 +52,16 @@ export class Round {
     });
   }
 
+  /**
+   * Get a random number between 0 and 36
+   * @return {Promise<number>}
+   */
+  public getNumber(): Promise<number> {
+    return new Promise((resolve, reject) => {
+      resolve(5); // lol
+    });
+  }
+
   private processWin() {
     Object
       .keys(this.bets)
@@ -69,15 +79,4 @@ export class Round {
         }
       });
   }
-
-  /**
-   * Get a random number between 0 and 36
-   * @return {Promise<number>}
-   */
-  private getNumber(): Promise<number> {
-    return new Promise((resolve, reject) => {
-      resolve(5); // lol
-    });
-  }
-
 }
