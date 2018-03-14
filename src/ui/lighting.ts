@@ -12,14 +12,15 @@ export class Lighting {
   constructor() {
     this.spot = new SpotLight(0xffffff);
     this.spot.position.set(1, 1, 1);
-    this.spot.angle = Math.PI / 4;
+
+    this.spot.angle = Math.PI / 7;
 
     this.spot.castShadow = true;
+    this.spot.penumbra = .4;
     this.spot.shadow.mapSize.width = 1024;
     this.spot.shadow.mapSize.height = 1024;
-    this.spot.shadow.camera.near = 1;
-    this.spot.shadow.camera.far = 3;
-    this.spot.shadow.camera.fov = 50;
+    this.spot.shadow.camera.near = 0.5;
+    this.spot.shadow.camera.far = 10;
 
     // add a general ambient light to get rid of hard shadows
     this.ambient = new AmbientLight(0xffffff, 0.1);
@@ -27,14 +28,6 @@ export class Lighting {
     // helpers
     this.spotHelper = new SpotLightHelper(this.spot);
     this.shadowCameraHelper = new CameraHelper(this.spot.shadow.camera);
-  }
-
-  /**
-   * This method will return all lighting objects to be added to a scene
-   * @return {any[]}
-   */
-  public getObject(): any[] {
-    return [...this.getLights(), ...this.getHelpers()];
   }
 
   public getLights(): any[] {

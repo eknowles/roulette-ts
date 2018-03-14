@@ -18,21 +18,3 @@ html, body {
   width: 100%;
   overflow: hidden;
 }
-
-.button {
-  background: #d9a234 linear-gradient(to bottom, #d9a234, #6b4400);
-  border-radius: 10px;
-  color: white;
-  font-size: 1em;
-  padding: .5em 1em;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: none;
-  transition: all 1s ease-in-out;
-}
-
-.button:hover {
-  background: #6b4400 linear-gradient(to bottom, #6b4400, #d9a234);
-  text-decoration: none;
-  cursor: pointer;
-}

@@ -12,6 +12,10 @@ import dat from 'dat.gui';
 import { MainCamera } from './cameras/main.camera';
 import { Lighting } from './lighting';
 
+export interface IAppConfig {
+  readonly drawHelpers?: boolean;
+}
+
 export abstract class BaseApp {
   public static ERROR_NO_ELEMENT = 'Could not find DOM element';
   public elementId: string;
@@ -23,13 +27,16 @@ export abstract class BaseApp {
   public document: Document;
   public window: Window;
   public element: HTMLElement;
-  public gui: any;
+  public gui: any; // dat.GUI
   public lighting: Lighting;
+  public config: IAppConfig;
 
   /**
    * @param {string} elementId DOM element id
+   * @param config
    */
-  constructor(elementId: string) {
+  constructor(elementId: string, config: IAppConfig = {}) {
+    this.config = config;
     this.document = document;
     this.window = window;
 
@@ -66,8 +73,13 @@ export abstract class BaseApp {
 
     // scene
     this.scene = new Scene();
-    this.scene.fog = new Fog(0x000000, 3, 6);
-    this.scene.add(...this.lighting.getObject());
+    this.scene.fog = new Fog(0x000000, 2, 4);
+    this.scene.add(...this.lighting.getLights());
+
+    if (this.config.drawHelpers) {
+      this.scene.add(...this.lighting.getHelpers());
+    }
+
     this.addEventListeners();
   }
 

@@ -18,4 +18,8 @@ game.table.currentSpin.run();
 // start a new spin
 game.table.newSpin();
 
-const app = new App('world');
+const settings = {
+  drawHelpers: true,
+};
+
+const app = new App('world', settings);

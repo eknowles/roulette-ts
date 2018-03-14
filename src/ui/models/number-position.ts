@@ -1,28 +1,31 @@
 import { Group, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
 
 import { NUMBERS } from '../../game/constants/numbers';
+import { NUMBER_COLORS, Z_INDEX_NUMBERS } from '../constants';
 
-export const DEFAULT_CELL_WIDTH = .2;
+export const DEFAULT_CELL_WIDTH = .13;
 export const DEFAULT_CELL_DEPTH = .1;
-export const DOZEN_SEPERATION = .01;
+export const DOZEN_SEPERATION = .005;
+export const CELL_SEPERATION = .005;
 
 export function NumberPosition(number: number, color: string): Mesh {
   const geometry = new PlaneGeometry(
-    DEFAULT_CELL_WIDTH,
-    DEFAULT_CELL_DEPTH,
+    DEFAULT_CELL_WIDTH - CELL_SEPERATION,
+    DEFAULT_CELL_DEPTH - CELL_SEPERATION,
   );
 
   geometry.rotateX(Math.PI / -2);
 
   const material = new MeshLambertMaterial({
-    color: color.toLowerCase(),
+    color: NUMBER_COLORS[color],
     dithering: true,
     wireframe: false,
   });
+
   const mesh = new Mesh(geometry, material);
 
   mesh.userData = {
-    positionId: `P_${number}`,
+    positionId: `P_${number === 0 ? 'ZERO' : number}`,
     positionType: 'STRAIGHT',
     type: 'position',
   };
@@ -30,8 +33,8 @@ export function NumberPosition(number: number, color: string): Mesh {
   // set mesh name so we can query it later
   mesh.name = `P_${number === 0 ? 'ZERO' : number}`;
 
-  mesh.castShadow = true;
   mesh.receiveShadow = true;
+  mesh.castShadow = true;
 
   return mesh;
 }
@@ -54,8 +57,8 @@ export function generateNumberGrid(): Group {
 
   // update zero geometry to fit across all rows
   zero.geometry = new PlaneGeometry(
-    DEFAULT_CELL_WIDTH * itemsPerRow,
-    DEFAULT_CELL_DEPTH,
+    DEFAULT_CELL_WIDTH * itemsPerRow - CELL_SEPERATION,
+    DEFAULT_CELL_DEPTH - CELL_SEPERATION,
     2,
   );
 
@@ -64,8 +67,13 @@ export function generateNumberGrid(): Group {
   zero.geometry.verticesNeedUpdate = true;
 
   zero.geometry.rotateX(Math.PI / -2);
+
   zero.translateX(DEFAULT_CELL_WIDTH);
   zero.translateZ(-(DEFAULT_CELL_DEPTH + DOZEN_SEPERATION));
+  zero.translateY(Z_INDEX_NUMBERS);
+
+  zero.receiveShadow = true;
+  zero.castShadow = true;
 
   // add zero to the group
   group.add(zero);
@@ -81,7 +89,8 @@ export function generateNumberGrid(): Group {
     const mesh = NumberPosition(n.number, n.color);
 
     // position the cell in the right column
-    mesh.translateX((currentCol * (DEFAULT_CELL_DEPTH * 2)) - (DEFAULT_CELL_DEPTH * 2));
+    mesh.translateX((currentCol * (DEFAULT_CELL_WIDTH)) - (DEFAULT_CELL_WIDTH));
+    mesh.translateY(Z_INDEX_NUMBERS);
 
     let dozenMultipler = 0;
 
@@ -95,6 +104,9 @@ export function generateNumberGrid(): Group {
 
     // position the column on the right row
     mesh.translateZ(((currentRow * DEFAULT_CELL_DEPTH) - DEFAULT_CELL_DEPTH) + dozenMultipler);
+
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
 
     // add the mesh to the THREE.Group
     group.add(mesh);
