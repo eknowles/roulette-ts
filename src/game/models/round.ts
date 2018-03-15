@@ -48,7 +48,7 @@ export class Round {
   public run() {
     this.getNumber().then((number) => {
       this.winner = number;
-      this.processWin();
+      this.processWin(this.bets, this.winner);
     });
   }
 
@@ -62,21 +62,30 @@ export class Round {
     });
   }
 
-  private processWin() {
-    Object
-      .keys(this.bets)
-      .forEach((positionId) => {
-        const position = POSITIONS.find((p) => p.id === positionId);
-        const type = TYPES.find((t) => t.id === position.typeId);
-        if (position.winners.includes(this.winner)) {
-          const stake = this.bets[positionId];
-          const winnings = type.payout * stake;
-          const playerReturnValue = winnings + stake;
+  public processWin(bets: IBet, winner: number): void {
+    const playerReturns = this.calculateBetReturns(bets, winner);
 
-          // console.info(`Position ${positionId}  of type ${type} is a winner - ${stake} => ${playerReturnValue}`);
+    if (playerReturns) {
+      this.player.win(playerReturns);
+    }
+  }
 
-          this.player.win(playerReturnValue);
-        }
-      });
+  public calculateBetReturns(bets: IBet, winner: number) {
+    return Object.keys(bets).reduce((accumulator: number, positionId: string) => {
+      return accumulator + this.calculatePositionReturn(positionId, bets[positionId], winner);
+    }, 0);
+  }
+
+  public calculatePositionReturn(positionId: string, originalStake: number, winningNumber: number): number {
+    const position = POSITIONS.find((p) => p.id === positionId);
+    const payout = TYPES.find((t) => t.id === position.typeId).payout;
+
+    if (!position.winners.includes(winningNumber)) {
+      return 0;
+    }
+
+    const winnings = originalStake * payout;
+
+    return winnings + originalStake;
   }
 }

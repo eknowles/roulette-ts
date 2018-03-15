@@ -125,12 +125,22 @@ describe('Class', () => {
         round.player.win = jest.fn();
       });
 
-      // TODO add tests for every combination of bets
-      it('should update the player with the correct value', () => {
-        round.bets = {P_ZERO: 1};
-        round.winner = 0;
-        round.processWin();
+      it('should update the player if placed a winning bet', () => {
+        round.processWin({P_ZERO: 1}, 0);
         expect(round.player.win).toHaveBeenCalledWith(36);
+      });
+
+      it('should do nothing if player does not win', () => {
+        round.processWin({P_ZERO: 1}, 1);
+        expect(round.player.win).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('calculatePositionReturn()', () => {
+      it('should update the player if placed a winning bet', () => {
+        const expected = (new Round(player)).calculatePositionReturn('P_ZERO', 1, 0);
+
+        expect(expected).toBe(36);
       });
     });
   });
