@@ -22,4 +22,8 @@ export class Table {
     this.previousSpins.push(this.currentSpin);
     this.currentSpin = new Round(this.player);
   }
+
+  public winningNumbers(): number[] {
+    return this.previousSpins.map((round) => round.winner);
+  }
 }

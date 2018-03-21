@@ -39,5 +39,20 @@ describe('Class', () => {
         expect(table.currentSpin instanceof Round).toBeTruthy();
       });
     });
+
+    describe('winningNumbers()', () => {
+      it('should return an array of winning numbers', () => {
+        const table = new Table(player);
+        const winners = [4, 20, 24, 7];
+
+        winners.forEach((numb) => {
+          const round = new Round(table.player);
+          round.winner = numb;
+          table.previousSpins.push(round);
+        });
+
+        expect(table.winningNumbers()).toEqual(winners);
+      });
+    });
   });
 });
