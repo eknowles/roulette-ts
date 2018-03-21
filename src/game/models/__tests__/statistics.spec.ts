@@ -6,7 +6,7 @@ describe('Class', () => {
     describe('getPositionCount()', () => {
       it('should return an object of all positionIds', () => {
         const result = Statistics.getPositionCount([]);
-        POSITIONS.forEach((pos) => {
+        Object.values(POSITIONS).forEach((pos) => {
           expect(result[pos.id]).toBeDefined();
           expect(typeof result[pos.id]).toBe('number');
         });

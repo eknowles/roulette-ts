@@ -16,7 +16,7 @@ export class Statistics {
    * @return {IPositionStatistic}
    */
   public static getPositionCount(winningNumbers: number[], typeId?: string): IPositionStatistic {
-    let positions = POSITIONS;
+    let positions = Object.values(POSITIONS);
 
     if (typeId) {
       positions = positions.filter((pos) => pos.typeId === typeId);
