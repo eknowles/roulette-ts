@@ -78,7 +78,7 @@ export class Round {
 
   public calculatePositionReturn(positionId: string, originalStake: number, winningNumber: number): number {
     const position = POSITIONS[positionId];
-    const payout = TYPES.find((t) => t.id === position.typeId).payout;
+    const payout = TYPES[position.typeId].payout;
 
     if (!position.winners.includes(winningNumber)) {
       return 0;
