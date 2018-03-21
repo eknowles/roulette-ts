@@ -12,7 +12,7 @@ const config = {
   },
   devServer: {
     compress: true,
-    contentBase: path.join(__dirname, 'dist/'),
+    contentBase: [path.join(__dirname, './dist'), path.join(__dirname, './assets')],
     port: 3000
   },
   context: path.resolve('./src'),
