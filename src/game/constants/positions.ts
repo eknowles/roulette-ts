@@ -1,4 +1,11 @@
 /* tslint:disable:max-line-length */
+
+export interface IPosition {
+  id: string;
+  typeId: string;
+  winners: number[];
+}
+
 const straights = [
   {id: 'P_1', typeId: 'STRAIGHT_UP', winners: [1]},
   {id: 'P_1', typeId: 'STRAIGHT_UP', winners: [1]},
@@ -151,7 +158,7 @@ const lines = [
   {id: 'P_31_32_33_34_35_36', typeId: 'SIX_LINE', winners: [31, 32, 33, 34, 35, 36]},
 ];
 
-export const POSITIONS = [
+export const POSITIONS: IPosition[] = [
   ...straights,
   ...splits,
   ...streets,
