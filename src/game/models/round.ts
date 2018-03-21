@@ -8,6 +8,8 @@ export interface IBet {
 
 export class Round {
   public static ERROR_NO_FUNDS = 'No Funds Available';
+  public static ERROR_BET_TOO_LARGE = 'Bet is too large for that position';
+  public static ERROR_BAD_POSITION_ID = 'Bad positionId';
   public createdAt: number;
   public bets: IBet;
   public winner: null | number;
@@ -32,8 +34,26 @@ export class Round {
   }
 
   public placeBet(amount: number, positionId: string) {
+    if (!POSITIONS[positionId]) {
+      throw new Error(Round.ERROR_BAD_POSITION_ID);
+    }
+
+    const position = POSITIONS[positionId];
+    const positionType = TYPES[position.typeId];
+    const positionMaxBet = positionType.maxBet;
+
     if (this.player.bank < amount) {
       throw new Error(Round.ERROR_NO_FUNDS);
+    }
+
+    // Check if the position has a maximum bet value and throw error if too large
+    if (positionMaxBet) {
+      if (amount > positionMaxBet) {
+        throw new Error(Round.ERROR_BET_TOO_LARGE);
+      }
+      if ((this.bets[positionId] + amount) > positionMaxBet) {
+        throw new Error(Round.ERROR_BET_TOO_LARGE);
+      }
     }
 
     if (this.bets[positionId]) {

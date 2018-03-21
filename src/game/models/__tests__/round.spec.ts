@@ -45,7 +45,7 @@ describe('Class', () => {
 
     describe('placeBet()', () => {
       it('should throw error if amount is greater than players bank', () => {
-        const positionId = 'foo';
+        const positionId = 'P_1';
         const amount = 10;
         const round = new Round(player);
         const action = () => round.placeBet(amount, positionId);
@@ -54,7 +54,7 @@ describe('Class', () => {
         expect(action).toThrowError(Round.ERROR_NO_FUNDS);
       });
       it('should insert key into bets object with amount as value', () => {
-        const positionId = 'foo';
+        const positionId = 'P_1';
         const amount = 10;
         const round = new Round(player);
 
@@ -64,7 +64,7 @@ describe('Class', () => {
         expect(round.bets[positionId]).toBe(amount);
       });
       it('should update bets value if already exists', () => {
-        const positionId = 'foo';
+        const positionId = 'P_1';
         const amount = 10;
         const round = new Round(player);
 
@@ -74,7 +74,7 @@ describe('Class', () => {
         expect(round.bets[positionId]).toBe(amount + amount);
       });
       it('should update bets value if already exists', () => {
-        const positionId = 'foo';
+        const positionId = 'P_1';
         const amount = 10;
         const round = new Round(player);
 
