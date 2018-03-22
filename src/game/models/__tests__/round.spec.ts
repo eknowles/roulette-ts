@@ -83,6 +83,10 @@ describe('Class', () => {
         round.placeBet(amount, positionId); // bet another 10 credits
         expect(round.player.bet).toHaveBeenCalledWith(amount);
       });
+      it('should throw error when given an invalid positionId', () => {
+        const fn = () => (new Round(player)).placeBet(10, 'foo');
+        expect(fn).toThrowError(Round.ERROR_BAD_POSITION_ID);
+      });
     });
 
     describe('run()', () => {
