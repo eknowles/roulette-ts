@@ -1,3 +1,4 @@
+import { MAX_TYPE_BET_VALUE } from '../constants/game';
 import { POSITIONS } from '../constants/positions';
 import { TYPES } from '../constants/types';
 import { Player } from './player';
@@ -38,9 +39,7 @@ export class Round {
       throw new Error(Round.ERROR_BAD_POSITION_ID);
     }
 
-    const position = POSITIONS[positionId];
-    const positionType = TYPES[position.typeId];
-    const positionMaxBet = positionType.maxBet;
+    const positionMaxBet = MAX_TYPE_BET_VALUE[POSITIONS[positionId].typeId];
 
     if (this.player.bank < amount) {
       throw new Error(Round.ERROR_NO_FUNDS);

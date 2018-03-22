@@ -87,6 +87,27 @@ describe('Class', () => {
         const fn = () => (new Round(player)).placeBet(10, 'foo');
         expect(fn).toThrowError(Round.ERROR_BAD_POSITION_ID);
       });
+      it('should throw error when amount is greater than position max', () => {
+        const positionId = 'P_1'; // T_STRAIGHT_UP = 25 max value
+        const amount = 25 + 1;
+        const round = new Round(player);
+
+        round.player.bank = amount; // ensure player has enough credit
+        const fn = () => round.placeBet(amount, positionId);
+        expect(fn).toThrowError(Round.ERROR_BET_TOO_LARGE);
+      });
+
+      it('should throw error when amount is greater than existing position plus max', () => {
+        const positionId = 'P_1'; // T_STRAIGHT_UP = 25 max value
+        const amount = 1;
+        const round = new Round(player);
+
+        round.bets = {[positionId]: 25}; // set bet position to max value
+        round.player.bank = amount; // ensure player has enough credit
+
+        const fn = () => round.placeBet(amount, positionId);
+        expect(fn).toThrowError(Round.ERROR_BET_TOO_LARGE);
+      });
     });
 
     describe('run()', () => {
