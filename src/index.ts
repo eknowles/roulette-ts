@@ -1,6 +1,8 @@
 import { Game } from './game';
 import { App } from './ui/app';
 
+import * as THREE from 'three';
+
 import './style/main.scss';
 
 const game = new Game();
@@ -19,7 +21,12 @@ game.table.currentSpin.run();
 game.table.newSpin();
 
 const settings = {
-  drawHelpers: true,
+  drawHelpers: false,
+  highQuality: true,
 };
 
 const app = new App('world', settings);
+
+window.THREE = THREE;
+window.scene = app.scene;
+window.app = app;

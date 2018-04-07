@@ -96,7 +96,6 @@ describe('Class', () => {
         const fn = () => round.placeBet(amount, positionId);
         expect(fn).toThrowError(Round.ERROR_BET_TOO_LARGE);
       });
-
       it('should throw error when amount is greater than existing position plus max', () => {
         const positionId = 'P_1'; // T_STRAIGHT_UP = 25 max value
         const amount = 1;
@@ -113,7 +112,6 @@ describe('Class', () => {
     describe('run()', () => {
       let round;
       let winningNumber;
-
       beforeEach(() => {
         round = new Round(player);
         winningNumber = 10;
@@ -144,17 +142,14 @@ describe('Class', () => {
 
     describe('processWin()', () => {
       let round;
-
       beforeEach(() => {
         round = new Round(player);
         round.player.win = jest.fn();
       });
-
       it('should update the player if placed a winning bet', () => {
         round.processWin({P_ZERO: 1}, 0);
         expect(round.player.win).toHaveBeenCalledWith(36);
       });
-
       it('should do nothing if player does not win', () => {
         round.processWin({P_ZERO: 1}, 1);
         expect(round.player.win).not.toHaveBeenCalled();

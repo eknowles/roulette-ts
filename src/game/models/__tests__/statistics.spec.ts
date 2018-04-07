@@ -12,7 +12,7 @@ describe('Class', () => {
         });
       });
       it('should return just the positions with typeId when specified in the second param', () => {
-        expect(Statistics.getPositionCount([], 'T_ROW')).toEqual({P_ROW: 0});
+        expect(Statistics.getPositionCount([], 'T_ZERO')).toEqual({P_ZERO: 0});
       });
       it('should total the number of winning positions', () => {
         expect(Statistics.getPositionCount([], 'T_ZERO')).toEqual({P_ZERO: 0});

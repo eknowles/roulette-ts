@@ -1,19 +1,12 @@
-import {
-  Fog,
-  PCFSoftShadowMap,
-  Raycaster,
-  Scene,
-  Vector2,
-  WebGLRenderer,
-} from 'three';
-
-import dat from 'dat.gui';
+import { Fog, PCFSoftShadowMap, Raycaster, Scene, Vector2, WebGLRenderer } from 'three';
 
 import { MainCamera } from './cameras/main.camera';
+import { Grid as gridHelper } from './helpers/grid';
 import { Lighting } from './lighting';
 
 export interface IAppConfig {
-  readonly drawHelpers?: boolean;
+  drawHelpers?: boolean;
+  highQuality?: boolean;
 }
 
 /**
@@ -30,7 +23,6 @@ export abstract class BaseApp {
   public document: Document;
   public window: Window;
   public element: HTMLElement;
-  public gui: any; // dat.GUI
   public lighting: Lighting;
   public config: IAppConfig;
 
@@ -38,7 +30,7 @@ export abstract class BaseApp {
    * @param {string} elementId DOM element id
    * @param config
    */
-  constructor(elementId: string, config: IAppConfig = {}) {
+  protected constructor(elementId: string, config: IAppConfig = {}) {
     this.config = config;
     this.document = document;
     this.window = window;
@@ -56,7 +48,6 @@ export abstract class BaseApp {
 
   public init() {
     // input
-    this.gui = new dat.GUI();
     this.raycaster = new Raycaster();
     this.mouse = new Vector2();
     this.camera = new MainCamera();
@@ -68,19 +59,21 @@ export abstract class BaseApp {
     this.renderer = new WebGLRenderer({antialias: true, alpha: true});
     this.renderer.setPixelRatio(this.window.devicePixelRatio);
     this.renderer.setSize(this.window.innerWidth, this.window.innerHeight);
-    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.enabled = this.config.highQuality || false;
     this.renderer.shadowMap.type = PCFSoftShadowMap;
     this.renderer.gammaInput = true;
     this.renderer.gammaOutput = true;
+    this.renderer.sortObjects = true;
     this.attachRenderer();
 
     // scene
     this.scene = new Scene();
-    this.scene.fog = new Fog(0x000000, 2, 4);
+    this.scene.fog = new Fog(0x000000, 10, 20);
     this.scene.add(...this.lighting.getLights());
 
     if (this.config.drawHelpers) {
       this.scene.add(...this.lighting.getHelpers());
+      this.scene.add(gridHelper());
     }
 
     this.addEventListeners();

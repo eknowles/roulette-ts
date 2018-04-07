@@ -11,19 +11,20 @@ export class Lighting {
 
   constructor() {
     this.spot = new SpotLight(0xffffff);
-    this.spot.position.set(1, 1, 1);
+    this.spot.position.set(3, 5, 0);
 
-    this.spot.angle = Math.PI / 7;
+    this.spot.angle = Math.PI / 4;
 
-    this.spot.castShadow = true;
-    this.spot.penumbra = .4;
+    this.spot.intensity = 8;
+    this.spot.distance = 10;
+    this.spot.penumbra = 1;
     this.spot.shadow.mapSize.width = 1024;
     this.spot.shadow.mapSize.height = 1024;
-    this.spot.shadow.camera.near = 0.5;
-    this.spot.shadow.camera.far = 10;
+    this.spot.shadow.camera.near = 3;
+    this.spot.shadow.camera.far = 15;
 
     // add a general ambient light to get rid of hard shadows
-    this.ambient = new AmbientLight(0xffffff, 0.1);
+    this.ambient = new AmbientLight(0xffffff, .15);
 
     // helpers
     this.spotHelper = new SpotLightHelper(this.spot);
@@ -32,8 +33,8 @@ export class Lighting {
 
   public getLights(): any[] {
     return [
-      this.spot,
-      this.ambient,
+      // this.spot,
+      // this.ambient,
     ];
   }
 
@@ -43,8 +44,8 @@ export class Lighting {
    */
   public getHelpers(): any[] {
     return [
-      this.shadowCameraHelper,
-      this.spotHelper,
+      // this.shadowCameraHelper,
+      // this.spotHelper,
     ];
   }
 }

@@ -1,63 +1,84 @@
 import * as TWEEN from '@tweenjs/tween.js';
-import { Box3, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
+import * as THREE from 'three';
+import * as ColladaLoader from 'three-collada-loader';
 
-import { POSITIONS } from '../game/constants/positions';
-import { TYPES } from '../game/constants/types';
 import { BaseApp } from './base';
 import * as CameraUtils from './cameras/utils';
-import { MESH_TYPE_POSITION, Z_INDEX_BORDER } from './constants';
+import * as constants from './constants';
+import { highlightPosition, resetHighlights } from './helpers/highlights';
 import { LoadingBar } from './loaders/loading-bar';
-import { createChip } from './models/chip';
-import { CELL_SEPERATION, generateNumberGrid } from './models/number-position';
-import { createFelt } from './models/table-cloth';
-import { getIntersectionByType } from './raycaster/evaluate-intersects';
 
 export class App extends BaseApp {
   private loadingBar: LoadingBar;
+  private lastPosition: string;
 
   constructor(elementId: string, config) {
     super(elementId, config);
     this.loadingBar = new LoadingBar();
-
     this.addAppEventListeners();
-
-    this.scene.add(createFelt());
-
-    const numberGrid = generateNumberGrid();
-
-    // number border box
-    const bbox = (new Box3()).setFromObject(numberGrid);
-    const bboxCenter = bbox.getCenter();
-    const w = bbox.max.x - bbox.min.x + (CELL_SEPERATION * 2);
-    const h = bbox.max.z - bbox.min.z + (CELL_SEPERATION * 2);
-    const borderGeometry = new PlaneGeometry(w, h, 1, 2);
-
-    borderGeometry.rotateX(Math.PI / -2);
-    borderGeometry.translate(bboxCenter.x, Z_INDEX_BORDER, bboxCenter.z);
-
-    const borderMesh = new Mesh(
-      borderGeometry,
-      new MeshLambertMaterial({
-        color: 0xCCCCCC,
-        dithering: true,
-        wireframe: false,
-      }),
-    );
-
-    this.scene.add(numberGrid);
-    this.scene.add(borderMesh);
-
-    this.setupGui(); // dat gui
-
+    this.setupModels();
     this.render();
+    CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_OVERVIEW, 300);
+  }
 
-    // do a pretty tween effect
-    CameraUtils.tweenPosition.call(this, {x: -.2, y: .3, z: .6}, 1000);
-    // CameraUtils.tweenPosition.call(this, {x: -1, y: .9, z: 1}, 500);
+  public setupModels() {
+    const daeLoader = new ColladaLoader();
+
+    daeLoader.load('./blender/test.dae', (collada: THREE.ColladaModel) => {
+      const scene = collada.scene;
+
+      scene.traverse((child) => {
+        const isHighlight = child.name.charAt(0) === 'H';
+        const isPosition = child.name.charAt(0) === 'P';
+
+        if (isHighlight) {
+          child.children.forEach((mesh: THREE.Mesh) => {
+            mesh.material.setValues({blending: THREE.AdditiveBlending, opacity: 0, transparent: true});
+            child.userData = {highlightId: child.name, type: constants.MESH_TYPE_HIGHLIGHT};
+          });
+        }
+
+        if (isPosition) {
+          // we account for multiple position references using a suffix (e.g. P_3-001)
+          const positionId = child.name.split('-')[0];
+
+          child.children.forEach((mesh: THREE.Mesh) => {
+            mesh.material.setValues({opacity: 0, transparent: true});
+            mesh.userData = {positionId, type: constants.MESH_TYPE_POSITION};
+          });
+        }
+      });
+
+      scene.rotateX(Math.PI / -2);
+      scene.scale.x = 3;
+      scene.scale.y = 3;
+      scene.scale.z = 3;
+
+      this.scene.add(scene);
+    });
   }
 
   public addAppEventListeners() {
+    this.window.addEventListener('mousemove', this.handleHighlights.bind(this), false);
     this.renderer.domElement.addEventListener('click', this.onClick.bind(this), false);
+    this.document.addEventListener('keypress', this.onKey.bind(this), false);
+  }
+
+  public onKey(event: KeyboardEvent) {
+    switch (event.key) {
+      case '0':
+        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_TOP, 1000);
+        break;
+      case '1':
+        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_FRONT, 1000);
+        break;
+      case '2':
+        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_SIDE, 1000);
+        break;
+      case '3':
+        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_OVERVIEW, 1000);
+        break;
+    }
   }
 
   /**
@@ -72,10 +93,8 @@ export class App extends BaseApp {
       helper.update();
     });
 
-    const p14 = this.scene.getObjectByName('P_14');
-    if (p14) {
-      this.camera.instance.lookAt(p14.position.x, p14.position.y, p14.position.z);
-    }
+    this.camera.instance.up.set(0, 1, 0);
+    this.camera.instance.lookAt(0, 0, 0);
     this.renderer.render(this.scene, this.camera.instance);
   }
 
@@ -87,54 +106,33 @@ export class App extends BaseApp {
   public onClick(event: MouseEvent) {
     this.onMouseMove(event);
     this.raycaster.setFromCamera(this.mouse, this.camera.instance);
-
-    const intersects = this.raycaster.intersectObjects(this.scene.children, true);
-    const positionObject = getIntersectionByType(intersects, MESH_TYPE_POSITION);
-    const position = POSITIONS.find((p) => p.id === positionObject.userData.positionId);
-    if (position) {
-      const type = TYPES.find((t) => t.id === position.typeId);
-      const obj = this.scene.getObjectByName(positionObject.userData.positionId);
-      this.scene.add(createChip(obj.position));
-      // console.log(type.id, positionId);
-    }
   }
 
-  private setupGui() {
-    const params = {
-      'angle': this.lighting.spot.angle,
-      'decay': this.lighting.spot.decay,
-      'distance': this.lighting.spot.distance,
-      'intensity': this.lighting.spot.intensity,
-      'light color': this.lighting.spot.color.getHex(),
-      'penumbra': this.lighting.spot.penumbra,
-    };
+  public handleHighlights(event: MouseEvent) {
+    this.onMouseMove(event);
+    this.raycaster.setFromCamera(this.mouse, this.camera.instance);
 
-    this.gui.addColor(params, 'light color').onChange((val) => {
-      this.lighting.spot.color.setHex(val);
-      this.renderer.shadowMap.needsUpdate = true;
-    });
-    this.gui.add(params, 'intensity', 0, 2).onChange((val) => {
-      this.lighting.spot.intensity = val;
-      this.renderer.shadowMap.needsUpdate = true;
-    });
-    this.gui.add(params, 'distance', 0, 10).onChange((val) => {
-      this.lighting.spot.distance = val;
-      this.renderer.shadowMap.needsUpdate = true;
-    });
-    this.gui.add(params, 'angle', 0, Math.PI / 3).onChange((val) => {
-      this.lighting.spot.angle = val;
-      this.renderer.shadowMap.needsUpdate = true;
-      this.render();
-    });
-    this.gui.add(params, 'penumbra', 0, 1).onChange((val) => {
-      this.lighting.spot.penumbra = val;
-      this.renderer.shadowMap.needsUpdate = true;
-    });
-    this.gui.add(params, 'decay', 1, 2).onChange((val) => {
-      this.lighting.spot.decay = val;
-      this.renderer.shadowMap.needsUpdate = true;
+    const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+
+    // game is in bet mode
+    const positionIntersect = intersects.find((intersect) => {
+      return intersect.object.userData.type === constants.MESH_TYPE_POSITION;
     });
 
-    this.gui.open();
+    if (positionIntersect && positionIntersect.object.userData.positionId) {
+      const positionId = positionIntersect.object.userData.positionId;
+
+      if (positionId === this.lastPosition) {
+        return;
+      }
+
+      resetHighlights(this.scene);
+
+      this.lastPosition = positionId;
+
+      highlightPosition(this.scene, positionId);
+    } else {
+      resetHighlights(this.scene);
+    }
   }
 }

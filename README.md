@@ -22,3 +22,7 @@ Build a production bundle to `./dist`
 ```bash
 $ yarn build
 ```
+
+## Resources
+
+[Diving In: THREE.js by CJ Gammon](https://www.youtube.com/playlist?list=PL08jItIqOb2qyMOhtEUoLh100KpccQiRf)

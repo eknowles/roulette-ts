@@ -1,0 +1,529 @@
+<svg width="4800px" height="4800px" viewBox="0 0 4800 4800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="layout">
+            <rect id="Rectangle" x="0" y="0" width="4800" height="4800"></rect>
+            <g id="Highlights" transform="translate(1275.000000, 234.000000)">
+                <g id="Outside" transform="translate(0.000000, 402.000000)">
+                    <g id="Dozen" transform="translate(218.000000, 297.500000) rotate(90.000000) translate(-218.000000, -297.500000) translate(-79.500000, 79.500000)">
+                        <rect id="overlay" x="0" y="0" width="595" height="436"></rect>
+                    </g>
+                    <g id="Dozen" transform="translate(218.000000, 902.500000) rotate(90.000000) translate(-218.000000, -902.500000) translate(-79.500000, 684.500000)">
+                        <rect id="overlay" x="0" y="0" width="595" height="436"></rect>
+                    </g>
+                    <g id="RB-Red" transform="translate(218.000000, 1510.000000) rotate(90.000000) translate(-218.000000, -1510.000000) translate(-82.000000, 1292.000000)">
+                        <rect id="overlay" x="0" y="0" width="600" height="436"></rect>
+                    </g>
+                    <g id="RB-Black" transform="translate(218.000000, 2120.000000) rotate(90.000000) translate(-218.000000, -2120.000000) translate(-82.000000, 1902.000000)">
+                        <rect id="overlay" x="0" y="0" width="600" height="436"></rect>
+                    </g>
+                    <g id="Dozen" transform="translate(218.000000, 2727.500000) rotate(90.000000) translate(-218.000000, -2727.500000) translate(-79.500000, 2509.500000)">
+                        <rect id="overlay" x="0" y="0" width="595" height="436"></rect>
+                    </g>
+                    <g id="Dozen" transform="translate(218.000000, 3332.500000) rotate(90.000000) translate(-218.000000, -3332.500000) translate(-79.500000, 3114.500000)">
+                        <rect id="overlay" x="0" y="0" width="595" height="436"></rect>
+                    </g>
+                    <g id="Dozen" transform="translate(664.000000, 1815.000000) rotate(90.000000) translate(-664.000000, -1815.000000) translate(59.000000, 1597.000000)">
+                        <rect id="overlay" x="0" y="0" width="1210" height="436"></rect>
+                    </g>
+                    <g id="Dozen" transform="translate(664.000000, 3030.000000) rotate(90.000000) translate(-664.000000, -3030.000000) translate(64.000000, 2812.000000)">
+                        <rect id="overlay" x="0" y="0" width="1200" height="436"></rect>
+                    </g>
+                    <g id="Column" transform="translate(1804.000000, 3640.000000)">
+                        <rect id="overlay" x="0" y="0" width="436" height="290"></rect>
+                    </g>
+                    <g id="Column" transform="translate(1358.000000, 3640.000000)">
+                        <rect id="overlay" x="0" y="0" width="436" height="290"></rect>
+                    </g>
+                    <g id="Column" transform="translate(912.000000, 3640.000000)">
+                        <rect id="overlay" x="0" y="0" width="436" height="290"></rect>
+                    </g>
+                    <g id="Dozen" transform="translate(664.000000, 600.000000) rotate(90.000000) translate(-664.000000, -600.000000) translate(64.000000, 382.000000)">
+                        <rect id="overlay" x="0" y="0" width="1200" height="436"></rect>
+                    </g>
+                </g>
+                <g id="Inside" transform="translate(912.000000, 0.000000)">
+                    <g id="Zero">
+                        <polygon id="overlay" points="0 102 664 0 1328 102 1328 392 0 392"></polygon>
+                    </g>
+                    <g id="25-36" transform="translate(0.000000, 2842.000000)">
+                        <g id="Red" transform="translate(892.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(0.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(892.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(446.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(0.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(892.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(0.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(892.000000, 0.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 0.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="13-24" transform="translate(0.000000, 1622.000000)">
+                        <g id="Black" transform="translate(892.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(446.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(0.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(892.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(0.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(892.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(0.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(892.000000, 0.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(446.000000, 0.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="1-12" transform="translate(0.000000, 402.000000)">
+                        <g id="Red" transform="translate(892.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(0.000000, 900.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(892.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(0.000000, 600.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(892.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(446.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(0.000000, 300.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red" transform="translate(892.000000, 0.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Black" transform="translate(446.000000, 0.000000)">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                        <g id="Red">
+                            <g id="Overlay">
+                                <rect id="A" x="-5" y="-5" width="104" height="67"></rect>
+                                <rect id="B" x="99" y="-5" width="238" height="67"></rect>
+                                <rect id="C" x="337" y="-5" width="104" height="67"></rect>
+                                <rect id="D" x="-5" y="62" width="104" height="165"></rect>
+                                <rect id="E" x="99" y="62" width="238" height="165"></rect>
+                                <rect id="F" x="337" y="62" width="104" height="165"></rect>
+                                <rect id="G" x="-5" y="227" width="104" height="68"></rect>
+                                <rect id="H" x="99" y="227" width="238" height="68"></rect>
+                                <rect id="I" x="337" y="227" width="104" height="68"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

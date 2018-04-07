@@ -8,7 +8,12 @@ export const MESH_TYPE_POSITION = 'position';
 export const MESH_TYPE_HIGHLIGHT = 'highlight';
 export const MESH_TYPE_CHIP = 'chip';
 
-export const COLOR_FELT = '#1A1F31';
+export const COLOR_FLOOR = '#1A1F31';
+
+export const CAMERA_POSITION_TOP = {x: 0, y: 5.5, z: 0};
+export const CAMERA_POSITION_OVERVIEW = {x: -3, y: 2.5, z: 2.5};
+export const CAMERA_POSITION_FRONT = {x: -2, y: 2.5, z: 0};
+export const CAMERA_POSITION_SIDE = {x: 0, y: 2.5, z: 3.5};
 
 export const NUMBER_COLORS = {
   BLACK: '#1e272e',

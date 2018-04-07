@@ -4,6 +4,7 @@ export interface IPosition {
   id: string;
   typeId: string;
   winners: number[];
+  highlights?: string[];
 }
 
 export interface IPositions {
@@ -49,7 +50,9 @@ const STRAIGHT_UPS = {
   P_36: {id: 'P_36', typeId: 'T_STRAIGHT_UP', winners: [36]},
 };
 const SPLITS = {
-  P_1_2: {id: 'P_1_2', typeId: 'T_SPLIT', winners: [1, 2]},
+  P_0_1: {id: 'P_0_1', typeId: 'T_SPLIT', winners: [0, 1]},
+  P_0_2: {id: 'P_0_2', typeId: 'T_SPLIT', winners: [0, 2]},
+  P_0_3: {id: 'P_0_3', typeId: 'T_SPLIT', winners: [0, 3]},
   P_2_3: {id: 'P_2_3', typeId: 'T_SPLIT', winners: [2, 3]},
   P_4_5: {id: 'P_4_5', typeId: 'T_SPLIT', winners: [4, 5]},
   P_5_6: {id: 'P_5_6', typeId: 'T_SPLIT', winners: [5, 6]},
@@ -122,6 +125,7 @@ const STREETS = {
   P_34_35_36: {id: 'P_34_35_36', typeId: 'T_STREET', winners: [34, 35, 36]},
 };
 const CORNERS = {
+  P_0_1_2_3: {id: 'P_0_1_2_3', typeId: 'T_CORNER', winners: [0, 1, 2, 3]},
   P_1_2_4_5: {id: 'P_1_2_4_5', typeId: 'T_CORNER', winners: [1, 2, 4, 5]},
   P_2_3_5_6: {id: 'P_2_3_5_6', typeId: 'T_CORNER', winners: [2, 3, 5, 6]},
   P_4_5_7_8: {id: 'P_4_5_7_8', typeId: 'T_CORNER', winners: [4, 5, 7, 8]},
@@ -144,8 +148,6 @@ const CORNERS = {
   P_29_30_32_33: {id: 'P_29_30_32_33', typeId: 'T_CORNER', winners: [29, 30, 32, 33]},
   P_31_32_34_35: {id: 'P_31_32_34_35', typeId: 'T_CORNER', winners: [31, 32, 34, 35]},
   P_32_33_35_36: {id: 'P_32_33_35_36', typeId: 'T_CORNER', winners: [32, 33, 35, 36]},
-  P_34_35_37_38: {id: 'P_34_35_37_38', typeId: 'T_CORNER', winners: [34, 35, 37, 38]},
-  P_35_36_38_39: {id: 'P_35_36_38_39', typeId: 'T_CORNER', winners: [35, 36, 38, 39]},
 };
 const LINES = {
   P_1_2_3_4_5_6: {id: 'P_1_2_3_4_5_6', typeId: 'T_SIX_LINE', winners: [1, 2, 3, 4, 5, 6]},
@@ -160,27 +162,32 @@ const LINES = {
   P_28_29_30_31_32_33: {id: 'P_28_29_30_31_32_33', typeId: 'T_SIX_LINE', winners: [28, 29, 30, 31, 32, 33]},
   P_31_32_33_34_35_36: {id: 'P_31_32_33_34_35_36', typeId: 'T_SIX_LINE', winners: [31, 32, 33, 34, 35, 36]},
 };
+const BASKETS = {
+  P_0_1_2: {id: 'P_0_1_2', typeId: 'T_BASKET', winners: [0, 1, 2]},
+  P_0_2_3: {id: 'P_0_2_3', typeId: 'T_BASKET', winners: [0, 2, 3]},
+};
+const OUTSIDE_BETS = {
+  P_1ST_COLUMN: {id: 'P_1ST_COLUMN', typeId: 'T_1ST_COLUMN', winners: [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34], highlights: ['H_1C']},
+  P_2ND_COLUMN: {id: 'P_2ND_COLUMN', typeId: 'T_2ND_COLUMN', winners: [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35], highlights: ['H_2C']},
+  P_3RD_COLUMN: {id: 'P_3RD_COLUMN', typeId: 'T_3RD_COLUMN', winners: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36], highlights: ['H_3C']},
+  P_1ST_DOZEN: {id: 'P_1ST_DOZEN', typeId: 'T_1ST_DOZEN', winners: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], highlights: ['H_1D']},
+  P_2ND_DOZEN: {id: 'P_2ND_DOZEN', typeId: 'T_2ND_DOZEN', winners: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], highlights: ['H_2D']},
+  P_3RD_DOZEN: {id: 'P_3RD_DOZEN', typeId: 'T_3RD_DOZEN', winners: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], highlights: ['H_3D']},
+  P_ODD: {id: 'P_ODD', typeId: 'T_ODD', winners: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35], highlights: ['H_ODD']},
+  P_EVEN: {id: 'P_EVEN', typeId: 'T_EVEN', winners: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36], highlights: ['H_EVEN']},
+  P_RED: {id: 'P_RED', typeId: 'T_RED', winners: [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36], highlights: ['H_RED']},
+  P_BLACK: {id: 'P_BLACK', typeId: 'T_BLACK', winners: [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35], highlights: ['H_BLACK']},
+  P_1_TO_18: {id: 'P_1_TO_18', typeId: 'T_1_TO_18', winners: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], highlights: ['H_FIRST']},
+  P_19_TO_36: {id: 'P_19_TO_36', typeId: 'T_19_TO_36', winners: [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], highlights: ['H_LAST']},
+};
 
 export const POSITIONS: IPositions = {
+  P_ZERO: {id: 'P_ZERO', typeId: 'T_ZERO', winners: [0]},
   ...STRAIGHT_UPS,
   ...SPLITS,
   ...STREETS,
   ...CORNERS,
   ...LINES,
-  P_ZERO: {id: 'P_ZERO', typeId: 'T_ZERO', winners: [0]},
-  P_DOUBLE_ZERO: {id: 'P_DOUBLE_ZERO', typeId: 'T_DOUBLE_ZERO', winners: [-1]},
-  P_ROW: {id: 'P_ROW', typeId: 'T_ROW', winners: [0, -1]},
-  P_BASKET: {id: 'P_BASKET', typeId: 'T_BASKET', winners: [0, -1, 1, 2, 3]},
-  P_1ST_COLUMN: {id: 'P_1ST_COLUMN', typeId: 'T_1ST_COLUMN', winners: [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34]},
-  P_2ND_COLUMN: {id: 'P_2ND_COLUMN', typeId: 'T_2ND_COLUMN', winners: [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35]},
-  P_3RD_COLUMN: {id: 'P_3RD_COLUMN', typeId: 'T_3RD_COLUMN', winners: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]},
-  P_1ST_DOZEN: {id: 'P_1ST_DOZEN', typeId: 'T_1ST_DOZEN', winners: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]},
-  P_2ND_DOZEN: {id: 'P_2ND_DOZEN', typeId: 'T_2ND_DOZEN', winners: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]},
-  P_3RD_DOZEN: {id: 'P_3RD_DOZEN', typeId: 'T_3RD_DOZEN', winners: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]},
-  P_ODD: {id: 'P_ODD', typeId: 'T_ODD', winners: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35]},
-  P_EVEN: {id: 'P_EVEN', typeId: 'T_EVEN', winners: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36]},
-  P_RED: {id: 'P_RED', typeId: 'T_RED', winners: [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]},
-  P_BLACK: {id: 'P_BLACK', typeId: 'T_BLACK', winners: [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]},
-  P_1_TO_18: {id: 'P_1_TO_18', typeId: 'T_1_TO_18', winners: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]},
-  P_19_TO_36: {id: 'P_19_TO_36', typeId: 'T_19_TO_36', winners: [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]},
+  ...BASKETS,
+  ...OUTSIDE_BETS,
 };
