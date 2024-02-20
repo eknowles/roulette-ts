@@ -76,7 +76,7 @@ export class Round {
    * @return {Promise<number>}
    */
   public getNumber(): Promise<number> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve(5); // lol
     });
   }

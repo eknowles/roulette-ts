@@ -1,4 +1,4 @@
-import { Fog, PCFSoftShadowMap, Raycaster, Scene, Vector2, WebGLRenderer } from 'three';
+import { Fog, PCFSoftShadowMap, Raycaster, Scene, SRGBColorSpace, Vector2, WebGLRenderer } from 'three';
 
 import { MainCamera } from './cameras/main.camera';
 import { Grid as gridHelper } from './helpers/grid';
@@ -61,8 +61,7 @@ export abstract class BaseApp {
     this.renderer.setSize(this.window.innerWidth, this.window.innerHeight);
     this.renderer.shadowMap.enabled = this.config.highQuality || false;
     this.renderer.shadowMap.type = PCFSoftShadowMap;
-    this.renderer.gammaInput = true;
-    this.renderer.gammaOutput = true;
+    this.renderer.outputColorSpace = SRGBColorSpace;
     this.renderer.sortObjects = true;
     this.attachRenderer();
 
@@ -83,7 +82,7 @@ export abstract class BaseApp {
    * Update camera aspect ratio and canvas size to fill window
    * @param {UIEvent} event
    */
-  public onWindowResize(event: UIEvent) {
+  public onWindowResize() {
     const w = this.window.innerWidth;
     const h = this.window.innerHeight;
 

@@ -1,25 +1,50 @@
-import { CylinderGeometry, Mesh, MeshLambertMaterial } from 'three';
+import * as THREE from 'three';
+import {GLTF, GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 
-export const CHIP_HEIGHT = .005;
-export const CHIP_RADIUS = .025;
+export function loadChip(): Promise<THREE.Scene> {
+  return new Promise((resolve) => {
+    const gltfLoader = new GLTFLoader();
 
-/**
- * Create a chip mesh
- * @param pos
- * @param {number} color
- * @return {Mesh}
- */
-export function createChip(pos, color = 0xffffff): Mesh {
-  const geometry = new CylinderGeometry(CHIP_RADIUS, CHIP_RADIUS, CHIP_HEIGHT, 16);
-  const material = new MeshLambertMaterial({color, dithering: true});
-  const chip = new Mesh(geometry, material);
+    gltfLoader.load('./blender/chip.glb', (gltf: GLTF) => {
+      const scene = gltf.scene;
 
-  chip.position.x = pos.x;
-  chip.position.y = pos.y + (CHIP_HEIGHT / 2);
-  chip.position.z = pos.z;
+      scene.traverse((child) => {
+        child.castShadow = true;
+        child.receiveShadow = true;
 
-  chip.castShadow = true;
-  chip.receiveShadow = true;
+        if (child.name === 'chip') {
+          child.visible = false;
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
 
-  return chip;
+      return resolve(scene);
+    });
+  });
+}
+
+function getTexture(name: string, url: string) {
+  return new Promise(((resolve, reject) => {
+    const loader = new THREE.TextureLoader();
+    loader.load(url, (texture) => {
+      texture.flipY = false;
+      return resolve({[name]: texture});
+    }, undefined, (e) => reject(e));
+  }));
+}
+
+export async function loadChipMaterials(): Promise<{ [id: string]: THREE.Texture }> {
+  const textureMaps = {
+    C_1: './blender/1.jpg',
+    C_10: './blender/10.jpg',
+    C_25: './blender/25.jpg',
+    C_5: './blender/5.jpg',
+    C_50: './blender/50.jpg',
+  };
+  const fn = Object.keys(textureMaps).reduce((acc, curr) => [...acc, getTexture(curr, textureMaps[curr])], []);
+  const maps = await Promise
+    .all(fn);
+  const output = maps.reduce((acc, curr) => ({...acc, ...curr}), {});
+  return Promise.resolve(output);
 }
