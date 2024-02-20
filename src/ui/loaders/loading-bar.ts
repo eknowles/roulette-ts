@@ -23,11 +23,11 @@ export class LoadingBar {
   }
 
   public showBar() {
-    this.bar.classList.add(LoadingBar.CLASS_NAME_ACTIVE);
+    this.bar?.classList.add(LoadingBar.CLASS_NAME_ACTIVE);
   }
 
   public hideBar() {
-    this.bar.classList.remove(LoadingBar.CLASS_NAME_ACTIVE);
+    this.bar?.classList.remove(LoadingBar.CLASS_NAME_ACTIVE);
   }
 
   public setProgress(pct: number) {
@@ -49,6 +49,7 @@ export class LoadingBar {
   }
 
   private onError(url: string) {
+    console.error(url); // do this better
     this.hideBar();
   }
 

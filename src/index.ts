@@ -4,6 +4,7 @@ import { App } from './ui/app';
 import * as THREE from 'three';
 
 import './style/main.scss';
+import { POSITIONS } from "./game/constants/positions";
 
 const game = new Game();
 
@@ -11,8 +12,8 @@ const game = new Game();
 game.table.player.deposit(5000);
 
 // place bets
-game.table.currentSpin.placeBet(100, 'P_RED');
-game.table.currentSpin.placeBet(100, 'P_1_TO_18');
+game.table.currentSpin.placeBet(100, POSITIONS.P_RED.id);
+game.table.currentSpin.placeBet(100, POSITIONS.P_1_TO_18.id);
 
 // spin wheel
 game.table.currentSpin.run();
@@ -21,7 +22,7 @@ game.table.currentSpin.run();
 game.table.newSpin();
 
 const settings = {
-  drawHelpers: false,
+  drawHelpers: true,
   highQuality: true,
 };
 

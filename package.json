@@ -3,76 +3,39 @@
   "version": "0.0.1",
   "main": "src/index.ts",
   "license": "UNLICENSED",
+  "type": "module",
   "private": true,
-  "author": "Edward Knowles <mail@eknowles.com>",
   "scripts": {
+    "preview": "vite preview",
     "start": "npm run build",
-    "test": "./node_modules/.bin/jest",
-    "test:coverage": "./node_modules/.bin/jest --coverage",
-    "dev": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --mode development",
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack --mode production --colors --bail",
-    "lint": "./node_modules/.bin/tslint -c tslint.json 'src/**/*.{ts,tsx}'",
-    "precommit": "npm run lint",
-    "prepush": "npm run lint && npm run test"
+    "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint -c eslint.config.js './src/**/*.{ts,tsx}'",
+    "prepare": "husky"
   },
-  "jest": {
-    "coverageDirectory": "./coverage",
-    "collectCoverageFrom": [
-      "src/**/*",
-      "!src/**/*.d.ts",
-      "!src/**/*.spec.ts"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": ".*\\.spec.(ts|tsx|js)$"
+  "dependencies": {
+    "@tweenjs/tween.js": "^23.1.1",
+    "coveralls": "^3.0.0",
+    "dat.gui": "^0.7.1",
+    "jest": "^22.4.2",
+    "lodash": "^4.17.5",
+    "nanoid": "^5.0.6",
+    "three": "^0.161.0",
+    "vite": "^5.1.3"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@tweenjs/tween.js": "^17.2.0",
+    "@happy-dom/global-registrator": "^13.3.8",
     "@types/jasmine": "^2.8.6",
     "@types/jest": "^22.2.0",
     "@types/lodash": "^4.14.104",
     "@types/node": "^9.6.0",
-    "@types/three": "^0.89.11",
-    "@types/tween.js": "^16.9.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "coveralls": "^3.0.0",
-    "cross-env": "^5.1.3",
-    "css-loader": "^0.28.10",
-    "dat.gui": "^0.7.1",
-    "ejs-loader": "^0.3.1",
-    "eslint": "^4.18.2",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.0.5",
-    "husky": "^0.14.3",
-    "jest": "^22.4.2",
-    "lodash": "^4.17.5",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.7",
-    "source-map-loader": "^0.2.3",
-    "style-loader": "^0.20.2",
-    "three": "^0.91.0",
-    "three-collada-loader": "^0.0.1",
-    "ts-jest": "^22.4.1",
-    "ts-loader": "^4.0.1",
-    "tslint": "^5.9.1",
-    "tslint-loader": "^3.6.0",
-    "typescript": "^2.7.2",
-    "webpack": "^4.1.0",
-    "webpack-cli": "^2.0.10",
-    "webpack-dashboard": "^1.1.1",
-    "webpack-dev-server": "^3.1.0"
+    "@types/three": "^0.161.2",
+    "eslint": "^8.56.0",
+    "husky": "^9.0.11",
+    "sass": "^1.71.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^7.0.2"
   }
 }
