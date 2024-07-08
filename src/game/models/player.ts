@@ -1,6 +1,6 @@
 export class Player {
-  public static ERROR_FLOAT_AMOUNT = 'Amount must be a whole number';
-  public static ERROR_NEGATIVE_AMOUNT = 'Amount must be a positive number';
+  public static ERROR_FLOAT_AMOUNT = "Amount must be a whole number";
+  public static ERROR_NEGATIVE_AMOUNT = "Amount must be a positive number";
   public static validateAmount(amount: number) {
     if (amount <= 0) {
       throw new Error(Player.ERROR_NEGATIVE_AMOUNT);
@@ -15,7 +15,7 @@ export class Player {
   public bank: number;
 
   constructor(name?: string) {
-    this.name = name || 'Player';
+    this.name = name || "Player";
     this.bank = 0;
   }
 

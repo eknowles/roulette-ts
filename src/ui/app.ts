@@ -1,12 +1,12 @@
-import * as TWEEN from '@tweenjs/tween.js';
-import * as THREE from 'three';
-import * as ColladaLoader from 'three-collada-loader';
+import * as TWEEN from "@tweenjs/tween.js";
+import * as THREE from "three";
+import * as ColladaLoader from "three-collada-loader";
 
-import { BaseApp } from './base';
-import * as CameraUtils from './cameras/utils';
-import * as constants from './constants';
-import { highlightPosition, resetHighlights } from './helpers/highlights';
-import { LoadingBar } from './loaders/loading-bar';
+import { BaseApp } from "./base";
+import * as CameraUtils from "./cameras/utils";
+import * as constants from "./constants";
+import { highlightPosition, resetHighlights } from "./helpers/highlights";
+import { LoadingBar } from "./loaders/loading-bar";
 
 export class App extends BaseApp {
   private loadingBar: LoadingBar;
@@ -18,33 +18,44 @@ export class App extends BaseApp {
     this.addAppEventListeners();
     this.setupModels();
     this.render();
-    CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_OVERVIEW, 300);
+    CameraUtils.tweenPosition.call(
+      this,
+      constants.CAMERA_POSITION_OVERVIEW,
+      300,
+    );
   }
 
   public setupModels() {
     const daeLoader = new ColladaLoader();
 
-    daeLoader.load('./blender/test.dae', (collada: THREE.ColladaModel) => {
+    daeLoader.load("./blender/test.dae", (collada: THREE.ColladaModel) => {
       const scene = collada.scene;
 
       scene.traverse((child) => {
-        const isHighlight = child.name.charAt(0) === 'H';
-        const isPosition = child.name.charAt(0) === 'P';
+        const isHighlight = child.name.charAt(0) === "H";
+        const isPosition = child.name.charAt(0) === "P";
 
         if (isHighlight) {
           child.children.forEach((mesh: THREE.Mesh) => {
-            mesh.material.setValues({blending: THREE.AdditiveBlending, opacity: 0, transparent: true});
-            child.userData = {highlightId: child.name, type: constants.MESH_TYPE_HIGHLIGHT};
+            mesh.material.setValues({
+              blending: THREE.AdditiveBlending,
+              opacity: 0,
+              transparent: true,
+            });
+            child.userData = {
+              highlightId: child.name,
+              type: constants.MESH_TYPE_HIGHLIGHT,
+            };
           });
         }
 
         if (isPosition) {
           // we account for multiple position references using a suffix (e.g. P_3-001)
-          const positionId = child.name.split('-')[0];
+          const positionId = child.name.split("-")[0];
 
           child.children.forEach((mesh: THREE.Mesh) => {
-            mesh.material.setValues({opacity: 0, transparent: true});
-            mesh.userData = {positionId, type: constants.MESH_TYPE_POSITION};
+            mesh.material.setValues({ opacity: 0, transparent: true });
+            mesh.userData = { positionId, type: constants.MESH_TYPE_POSITION };
           });
         }
       });
@@ -59,24 +70,48 @@ export class App extends BaseApp {
   }
 
   public addAppEventListeners() {
-    this.window.addEventListener('mousemove', this.handleHighlights.bind(this), false);
-    this.renderer.domElement.addEventListener('click', this.onClick.bind(this), false);
-    this.document.addEventListener('keypress', this.onKey.bind(this), false);
+    this.window.addEventListener(
+      "mousemove",
+      this.handleHighlights.bind(this),
+      false,
+    );
+    this.renderer.domElement.addEventListener(
+      "click",
+      this.onClick.bind(this),
+      false,
+    );
+    this.document.addEventListener("keypress", this.onKey.bind(this), false);
   }
 
   public onKey(event: KeyboardEvent) {
     switch (event.key) {
-      case '0':
-        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_TOP, 1000);
+      case "0":
+        CameraUtils.tweenPosition.call(
+          this,
+          constants.CAMERA_POSITION_TOP,
+          1000,
+        );
         break;
-      case '1':
-        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_FRONT, 1000);
+      case "1":
+        CameraUtils.tweenPosition.call(
+          this,
+          constants.CAMERA_POSITION_FRONT,
+          1000,
+        );
         break;
-      case '2':
-        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_SIDE, 1000);
+      case "2":
+        CameraUtils.tweenPosition.call(
+          this,
+          constants.CAMERA_POSITION_SIDE,
+          1000,
+        );
         break;
-      case '3':
-        CameraUtils.tweenPosition.call(this, constants.CAMERA_POSITION_OVERVIEW, 1000);
+      case "3":
+        CameraUtils.tweenPosition.call(
+          this,
+          constants.CAMERA_POSITION_OVERVIEW,
+          1000,
+        );
         break;
     }
   }
@@ -112,7 +147,10 @@ export class App extends BaseApp {
     this.onMouseMove(event);
     this.raycaster.setFromCamera(this.mouse, this.camera.instance);
 
-    const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+    const intersects = this.raycaster.intersectObjects(
+      this.scene.children,
+      true,
+    );
 
     // game is in bet mode
     const positionIntersect = intersects.find((intersect) => {

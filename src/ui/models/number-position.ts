@@ -1,12 +1,16 @@
-import { Group, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
+import { Group, Mesh, MeshLambertMaterial, PlaneGeometry } from "three";
 
-import { NUMBERS } from '../../game/constants/numbers';
-import { MESH_TYPE_POSITION, NUMBER_COLORS, Z_INDEX_NUMBERS } from '../constants';
+import { NUMBERS } from "../../game/constants/numbers";
+import {
+  MESH_TYPE_POSITION,
+  NUMBER_COLORS,
+  Z_INDEX_NUMBERS,
+} from "../constants";
 
-export const DEFAULT_CELL_WIDTH = .13;
-export const DEFAULT_CELL_DEPTH = .1;
-export const DOZEN_SEPERATION = .005;
-export const CELL_SEPERATION = .005;
+export const DEFAULT_CELL_WIDTH = 0.13;
+export const DEFAULT_CELL_DEPTH = 0.1;
+export const DOZEN_SEPERATION = 0.005;
+export const CELL_SEPERATION = 0.005;
 
 export function NumberPosition(number: number, color: string): Mesh {
   const geometry = new PlaneGeometry(
@@ -25,13 +29,13 @@ export function NumberPosition(number: number, color: string): Mesh {
   const mesh = new Mesh(geometry, material);
 
   mesh.userData = {
-    positionId: `P_${number === 0 ? 'ZERO' : number}`,
-    positionType: 'STRAIGHT',
+    positionId: `P_${number === 0 ? "ZERO" : number}`,
+    positionType: "STRAIGHT",
     type: MESH_TYPE_POSITION,
   };
 
   // set mesh name so we can query it later
-  mesh.name = `P_${number === 0 ? 'ZERO' : number}`;
+  mesh.name = `P_${number === 0 ? "ZERO" : number}`;
 
   mesh.receiveShadow = true;
   mesh.castShadow = true;
@@ -89,7 +93,7 @@ export function generateNumberGrid(): Group {
     const mesh = NumberPosition(n.number, n.color);
 
     // position the cell in the right column
-    mesh.translateX((currentCol * (DEFAULT_CELL_WIDTH)) - (DEFAULT_CELL_WIDTH));
+    mesh.translateX(currentCol * DEFAULT_CELL_WIDTH - DEFAULT_CELL_WIDTH);
     mesh.translateY(Z_INDEX_NUMBERS);
 
     let dozenMultipler = 0;
@@ -103,7 +107,9 @@ export function generateNumberGrid(): Group {
     }
 
     // position the column on the right row
-    mesh.translateZ(((currentRow * DEFAULT_CELL_DEPTH) - DEFAULT_CELL_DEPTH) + dozenMultipler);
+    mesh.translateZ(
+      currentRow * DEFAULT_CELL_DEPTH - DEFAULT_CELL_DEPTH + dozenMultipler,
+    );
 
     mesh.receiveShadow = true;
     mesh.castShadow = true;

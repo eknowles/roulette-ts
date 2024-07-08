@@ -9,7 +9,7 @@
   flex: 1 1 auto;
   display: none;
   &__modal {
-    background-color: rgba(black, .7);
+    background-color: rgba(black, 0.7);
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -34,7 +34,7 @@
     font-size: 3em;
     background-color: transparent;
     text-align: center;
-    padding: .8em;
+    padding: 0.8em;
     color: white;
     border: none;
     margin: 10px;

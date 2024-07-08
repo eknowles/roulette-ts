@@ -1,13 +1,13 @@
-import { Mesh, Object3D, Scene } from 'three';
-import { POSITIONS } from '../../game/constants/positions';
-import { MESH_TYPE_HIGHLIGHT } from '../constants';
+import { Mesh, Object3D, Scene } from "three";
+import { POSITIONS } from "../../game/constants/positions";
+import { MESH_TYPE_HIGHLIGHT } from "../constants";
 
 export function resetHighlights(scene: Scene) {
   scene.traverse((object) => {
     if (object.userData.type === MESH_TYPE_HIGHLIGHT) {
       object.children.forEach((child: Mesh) => {
         if (child.material) {
-          child.material.setValues({opacity: 0});
+          child.material.setValues({ opacity: 0 });
         }
       });
     }
@@ -38,6 +38,6 @@ export function highlightPosition(scene: Scene, positionId: string) {
 
 function highlightChildren(obj: Object3D) {
   obj.children.forEach((child: Mesh) => {
-    child.material.setValues({opacity: 0.2});
+    child.material.setValues({ opacity: 0.2 });
   });
 }

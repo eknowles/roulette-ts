@@ -1,4 +1,4 @@
-  {
+{
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -6,16 +6,9 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "es2017",
-      "es2015",
-      "dom"
-    ],
+    "lib": ["es2017", "es2015", "dom"],
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,16 +1,16 @@
-import { MAX_TYPE_BET_VALUE } from '../constants/game';
-import { POSITIONS } from '../constants/positions';
-import { TYPES } from '../constants/types';
-import { Player } from './player';
+import { MAX_TYPE_BET_VALUE } from "../constants/game";
+import { POSITIONS } from "../constants/positions";
+import { TYPES } from "../constants/types";
+import { Player } from "./player";
 
 export interface IBet {
   [positionId: string]: number;
 }
 
 export class Round {
-  public static ERROR_NO_FUNDS = 'No Funds Available';
-  public static ERROR_BET_TOO_LARGE = 'Bet is too large for that position';
-  public static ERROR_BAD_POSITION_ID = 'Bad positionId';
+  public static ERROR_NO_FUNDS = "No Funds Available";
+  public static ERROR_BET_TOO_LARGE = "Bet is too large for that position";
+  public static ERROR_BAD_POSITION_ID = "Bad positionId";
   public createdAt: number;
   public bets: IBet;
   public winner: null | number;
@@ -50,7 +50,7 @@ export class Round {
       if (amount > positionMaxBet) {
         throw new Error(Round.ERROR_BET_TOO_LARGE);
       }
-      if ((this.bets[positionId] + amount) > positionMaxBet) {
+      if (this.bets[positionId] + amount > positionMaxBet) {
         throw new Error(Round.ERROR_BET_TOO_LARGE);
       }
     }
@@ -90,12 +90,22 @@ export class Round {
   }
 
   public calculateBetReturns(bets: IBet, winner: number) {
-    return Object.keys(bets).reduce((accumulator: number, positionId: string) => {
-      return accumulator + this.calculatePositionReturn(positionId, bets[positionId], winner);
-    }, 0);
+    return Object.keys(bets).reduce(
+      (accumulator: number, positionId: string) => {
+        return (
+          accumulator +
+          this.calculatePositionReturn(positionId, bets[positionId], winner)
+        );
+      },
+      0,
+    );
   }
 
-  public calculatePositionReturn(positionId: string, originalStake: number, winningNumber: number): number {
+  public calculatePositionReturn(
+    positionId: string,
+    originalStake: number,
+    winningNumber: number,
+  ): number {
     const position = POSITIONS[positionId];
     const payout = TYPES[position.typeId].payout;
 

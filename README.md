@@ -7,22 +7,32 @@
 
 ## Build
 
-### Development
-
-Run `webpack-dev-server` on http://localhost:3000 
-
-```bash
-$ yarn dev
-```
-
 ### Production
 
 Build a production bundle to `./dist`
 
 ```bash
-$ yarn build
+$ bun run build
+```
+
+## Development
+
+```bash
+$ bun run dev
+```
+
+### Testing
+
+```bash
+$ bun test
 ```
 
 ## Resources
 
 [Diving In: THREE.js by CJ Gammon](https://www.youtube.com/playlist?list=PL08jItIqOb2qyMOhtEUoLh100KpccQiRf)
+
+## History
+
+- Started in March 2018
+- Coded for a few weeks
+- Left it for 5 years

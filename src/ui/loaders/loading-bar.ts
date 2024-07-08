@@ -1,12 +1,12 @@
-import { DefaultLoadingManager } from 'three';
+import { DefaultLoadingManager } from "three";
 
 /**
  * This class handles the UI for the loading bar at the top of the page
  */
 export class LoadingBar {
-  public static CLASS_NAME = 'loading-bar';
+  public static CLASS_NAME = "loading-bar";
   public static CLASS_NAME_ACTIVE = `${LoadingBar.CLASS_NAME}--active`;
-  public static calculatePecentage(items: number, total: number) {
+  public static calculatePercentage(items: number, total: number) {
     return Math.round((items / total) * 100);
   }
   public id: string;
@@ -35,7 +35,7 @@ export class LoadingBar {
   }
 
   private onStart(url: string, itemsLoaded: number, itemsTotal: number) {
-    this.setProgress(LoadingBar.calculatePecentage(itemsLoaded, itemsTotal));
+    this.setProgress(LoadingBar.calculatePercentage(itemsLoaded, itemsTotal));
     this.showBar();
   }
 
@@ -45,7 +45,7 @@ export class LoadingBar {
   }
 
   private onProgress(url: string, itemsLoaded: number, itemsTotal: number) {
-    this.setProgress(LoadingBar.calculatePecentage(itemsLoaded, itemsTotal));
+    this.setProgress(LoadingBar.calculatePercentage(itemsLoaded, itemsTotal));
   }
 
   private onError(url: string) {
@@ -53,10 +53,10 @@ export class LoadingBar {
   }
 
   private createBarElement() {
-    const container = document.createElement('div');
+    const container = document.createElement("div");
 
     container.className = LoadingBar.CLASS_NAME;
-    container.setAttribute('id', this.id);
+    container.setAttribute("id", this.id);
     document.body.appendChild(container);
 
     return container;

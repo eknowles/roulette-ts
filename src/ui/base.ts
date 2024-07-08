@@ -1,8 +1,15 @@
-import { Fog, PCFSoftShadowMap, Raycaster, Scene, Vector2, WebGLRenderer } from 'three';
+import {
+  Fog,
+  PCFSoftShadowMap,
+  Raycaster,
+  Scene,
+  Vector2,
+  WebGLRenderer,
+} from "three";
 
-import { MainCamera } from './cameras/main.camera';
-import { Grid as gridHelper } from './helpers/grid';
-import { Lighting } from './lighting';
+import { MainCamera } from "./cameras/main.camera";
+import { Grid as gridHelper } from "./helpers/grid";
+import { Lighting } from "./lighting";
 
 export interface IAppConfig {
   drawHelpers?: boolean;
@@ -13,7 +20,7 @@ export interface IAppConfig {
  * This class is the base for a three js app
  */
 export abstract class BaseApp {
-  public static ERROR_NO_ELEMENT = 'Could not find DOM element';
+  public static ERROR_NO_ELEMENT = "Could not find DOM element";
   public elementId: string;
   public camera: MainCamera;
   public scene: Scene;
@@ -56,7 +63,7 @@ export abstract class BaseApp {
     this.lighting = new Lighting();
 
     // renderer
-    this.renderer = new WebGLRenderer({antialias: true, alpha: true});
+    this.renderer = new WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio(this.window.devicePixelRatio);
     this.renderer.setSize(this.window.innerWidth, this.window.innerHeight);
     this.renderer.shadowMap.enabled = this.config.highQuality || false;
@@ -105,8 +112,16 @@ export abstract class BaseApp {
    * Add event listeners to window
    */
   private addEventListeners() {
-    this.window.addEventListener('resize', this.onWindowResize.bind(this), false);
-    this.window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+    this.window.addEventListener(
+      "resize",
+      this.onWindowResize.bind(this),
+      false,
+    );
+    this.window.addEventListener(
+      "mousemove",
+      this.onMouseMove.bind(this),
+      false,
+    );
   }
 
   /**

@@ -1,5 +1,5 @@
-import { Scene } from 'three';
-import { App } from './ui/app';
+import { Scene } from "three";
+import { App } from "./ui/app";
 
 declare function require(name: string);
 

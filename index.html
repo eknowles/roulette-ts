@@ -1,15 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <meta name="description" content="<%= htmlWebpackPlugin.options.title %>" />
-    <!--<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Kumar+One" rel="stylesheet">-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>app</title>
   </head>
   <body>
     <div class="world" id="world"></div>
@@ -37,5 +31,8 @@
         <button class="deposit__button" type="button">Submit</button>
       </div>
     </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

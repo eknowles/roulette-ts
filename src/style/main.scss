@@ -1,10 +1,11 @@
-@import 'vars';
-@import 'keybinds';
-@import 'bank';
-@import 'deposit';
-@import 'loading-bar';
+@import "vars";
+@import "keybinds";
+@import "bank";
+@import "deposit";
+@import "loading-bar";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   color: white;

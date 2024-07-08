@@ -1,4 +1,4 @@
-import { AmbientLight, CameraHelper, SpotLight, SpotLightHelper } from 'three';
+import { AmbientLight, CameraHelper, SpotLight, SpotLightHelper } from "three";
 
 /**
  * This class holds the lighting objects for the the main scene
@@ -24,7 +24,7 @@ export class Lighting {
     this.spot.shadow.camera.far = 15;
 
     // add a general ambient light to get rid of hard shadows
-    this.ambient = new AmbientLight(0xffffff, .15);
+    this.ambient = new AmbientLight(0xffffff, 0.15);
 
     // helpers
     this.spotHelper = new SpotLightHelper(this.spot);

@@ -1,4 +1,4 @@
-import { GridHelper, Vector3 } from 'three';
+import { GridHelper, Vector3 } from "three";
 
 export function Grid() {
   const grid = new GridHelper(10, 10);
