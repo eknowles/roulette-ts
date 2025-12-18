@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Application</title>
     <!--vite-dev-scripts-->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #world {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
 
 <div class="world" id="world"></div>
 
-<!--bet state-->
-<div class="bank">
-    <div class="bank-balance">6000</div>
-    <button class="button button--deposit" type="button" id="deposit-button">Deposit</button>
-</div>
-
-
-<!--deposit state-->
-<div class="deposit">
-    <div class="deposit__modal">
-        <div class="deposit__title">Title</div>
-        <label class="deposit__label" for="deposit-input">input</label>
-        <input class="deposit__input" type="number" id="deposit-input" min="0" value="500">
-        <button class="deposit__button" type="button">Submit</button>
-    </div>
-</div>
-
-<script type="module" src="/src/index.ts"></script>
+<script type="module" src="/src/index.tsx"></script>
 </body>
 </html>
