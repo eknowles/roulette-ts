@@ -1,8 +1,8 @@
-@import 'vars';
-@import 'keybinds';
-@import 'bank';
-@import 'deposit';
-@import 'loading-bar';
+@use 'vars' as *;
+@use 'keybinds';
+@use 'bank';
+@use 'deposit';
+@use 'loading-bar';
 
 html, body {
   margin: 0;
