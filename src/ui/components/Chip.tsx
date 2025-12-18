@@ -5,7 +5,7 @@ import { Easing, Tween } from '@tweenjs/tween.js';
 
 const CHIP_MODEL_PATH = '/roulette-ts/blender/chip.glb';
 
-const textureMaps: Record<string, string> = {
+export const textureMaps: Record<string, string> = {
   C_1: '/roulette-ts/blender/1.jpg',
   C_5: '/roulette-ts/blender/5.jpg',
   C_10: '/roulette-ts/blender/10.jpg',
@@ -90,5 +90,12 @@ export const Chip: React.FC<ChipProps> = ({ position, chipTexture, isTop }) => {
 };
 
 useGLTF.preload(CHIP_MODEL_PATH);
+
+// Preload component to load textures early
+export const ChipTexturePreloader: React.FC = () => {
+  // This will preload all textures into the cache
+  useTexture(textureMaps);
+  return null;
+};
 
 

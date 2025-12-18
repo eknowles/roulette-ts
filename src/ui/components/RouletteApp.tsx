@@ -7,6 +7,7 @@ import { Lighting } from './Lighting';
 import { Layout } from './Layout';
 import { PlacedChips } from './PlacedChips';
 import { CameraController } from './CameraController';
+import { ChipTexturePreloader } from './Chip';
 
 const GameContext = createContext<UseGameStateResult | null>(null);
 
@@ -34,6 +35,7 @@ export const RouletteApp: React.FC = () => {
           <ambientLight intensity={0.2} />
           <Lighting />
           <CameraController />
+          <ChipTexturePreloader />
           <Layout />
           <PlacedChips />
           <OrbitControls enablePan={false} enableZoom={false} />
