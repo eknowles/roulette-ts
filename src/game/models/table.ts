@@ -1,8 +1,8 @@
-import { NUMBERS } from '../constants/numbers';
-import { POSITIONS } from '../constants/positions';
-import { TYPES } from '../constants/types';
-import { Player } from './player';
-import { Round } from './round';
+import { NUMBERS } from "../constants/numbers";
+import { POSITIONS } from "../constants/positions";
+import { TYPES } from "../constants/types";
+import { Player } from "./player";
+import { Round } from "./round";
 
 export class Table {
   public numbers = NUMBERS;

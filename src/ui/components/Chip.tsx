@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useRef } from 'react';
-import { useGLTF, useTexture } from '@react-three/drei';
-import * as THREE from 'three';
-import { Easing, Tween } from '@tweenjs/tween.js';
+import React, { useEffect, useMemo, useRef } from "react";
+import { useGLTF, useTexture } from "@react-three/drei";
+import * as THREE from "three";
+import { Easing, Tween } from "@tweenjs/tween.js";
 
-const BASE_URL = import.meta.env.BASE_URL.replace(/\/+/g, '/');
-const CHIP_MODEL_PATH = `${BASE_URL}blender/chip.glb`.replace(/\/+/g, '/');
+const BASE_URL = import.meta.env.BASE_URL.replace(/\/+/g, "/");
+const CHIP_MODEL_PATH = `${BASE_URL}blender/chip.glb`.replace(/\/+/g, "/");
 
 export const textureMaps: Record<string, string> = {
-  C_1: `${BASE_URL}blender/1.jpg`.replace(/\/+/g, '/'),
-  C_5: `${BASE_URL}blender/5.jpg`.replace(/\/+/g, '/'),
-  C_10: `${BASE_URL}blender/10.jpg`.replace(/\/+/g, '/'),
-  C_25: `${BASE_URL}blender/25.jpg`.replace(/\/+/g, '/'),
-  C_50: `${BASE_URL}blender/50.jpg`.replace(/\/+/g, '/'),
+  C_1: `${BASE_URL}blender/1.jpg`.replace(/\/+/g, "/"),
+  C_5: `${BASE_URL}blender/5.jpg`.replace(/\/+/g, "/"),
+  C_10: `${BASE_URL}blender/10.jpg`.replace(/\/+/g, "/"),
+  C_25: `${BASE_URL}blender/25.jpg`.replace(/\/+/g, "/"),
+  C_50: `${BASE_URL}blender/50.jpg`.replace(/\/+/g, "/"),
 };
 
 interface ChipProps {
@@ -26,9 +26,9 @@ export const Chip: React.FC<ChipProps> = ({ position, chipTexture, isTop }) => {
   const groupRef = useRef<THREE.Group>(null);
 
   const mesh = useMemo(() => {
-    const base = gltf.scene.getObjectByName('chip') as THREE.Mesh;
+    const base = gltf.scene.getObjectByName("chip") as THREE.Mesh;
     if (!base) {
-      console.warn('Chip mesh not found in model');
+      console.warn("Chip mesh not found in model");
       return new THREE.Mesh();
     }
     const clone = base.clone();
@@ -73,7 +73,10 @@ export const Chip: React.FC<ChipProps> = ({ position, chipTexture, isTop }) => {
       mesh.rotation.x = startRotationX;
 
       new Tween(groupRef.current.position)
-        .to({ x: targetPosition.x, y: targetPosition.y, z: targetPosition.z }, 700)
+        .to(
+          { x: targetPosition.x, y: targetPosition.y, z: targetPosition.z },
+          700,
+        )
         .easing(Easing.Circular.Out)
         .start();
 
@@ -102,5 +105,3 @@ export const ChipTexturePreloader: React.FC = () => {
   useTexture(textureMaps);
   return null;
 };
-
-

@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
-import { OrbitControls } from '@react-three/drei';
-import { GameProvider } from '../hooks/useGame';
-import { Lighting } from './Lighting';
-import { Layout } from './Layout';
-import { PlacedChips } from './PlacedChips';
-import { CameraController } from './CameraController';
-import { ChipTexturePreloader } from './Chip';
+import React, { Suspense } from "react";
+import { OrbitControls } from "@react-three/drei";
+import { GameProvider } from "../hooks/useGame";
+import { Lighting } from "./Lighting";
+import { Layout } from "./Layout";
+import { PlacedChips } from "./PlacedChips";
+import { CameraController } from "./CameraController";
+import { ChipTexturePreloader } from "./Chip";
 
 /**
  * RouletteScene - A standalone scene component for Triplex

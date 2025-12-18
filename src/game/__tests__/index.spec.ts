@@ -1,7 +1,7 @@
-import * as module from '../index';
+import * as module from "../index";
 
-describe('Game', () => {
-  it('should export models', () => {
+describe("Game", () => {
+  it("should export models", () => {
     expect(module.Game).toBeDefined();
     expect(module.Player).toBeDefined();
     expect(module.Round).toBeDefined();

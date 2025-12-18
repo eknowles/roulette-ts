@@ -9,7 +9,7 @@
 
 ### Development
 
-Run `vite` on http://localhost:3000 
+Run `vite` on http://localhost:3000
 
 ```bash
 $ bun run dev

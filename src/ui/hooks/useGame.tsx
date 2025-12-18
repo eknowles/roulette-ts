@@ -1,12 +1,19 @@
-import React, { createContext, useContext, useEffect, useMemo, useReducer, ReactNode } from 'react';
-import { Game } from '../../game';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  ReactNode,
+} from "react";
+import { Game } from "../../game";
 
 export const GAME_PHASE = {
-  LOADING: 'LOADING',
-  BET: 'BET',
+  LOADING: "LOADING",
+  BET: "BET",
 } as const;
 
-export type GamePhase = typeof GAME_PHASE[keyof typeof GAME_PHASE];
+export type GamePhase = (typeof GAME_PHASE)[keyof typeof GAME_PHASE];
 
 export interface GameContextValue {
   game: Game;
@@ -20,9 +27,9 @@ export interface GameContextValue {
 }
 
 type Action =
-  | { type: 'TICK' }
-  | { type: 'SET_CHIP_VALUE'; value: number }
-  | { type: 'SET_PHASE'; phase: GamePhase };
+  | { type: "TICK" }
+  | { type: "SET_CHIP_VALUE"; value: number }
+  | { type: "SET_PHASE"; phase: GamePhase };
 
 interface State {
   version: number;
@@ -38,11 +45,11 @@ const initialState: State = {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'TICK':
+    case "TICK":
       return { ...state, version: state.version + 1 };
-    case 'SET_CHIP_VALUE':
+    case "SET_CHIP_VALUE":
       return { ...state, selectedChipValue: action.value };
-    case 'SET_PHASE':
+    case "SET_PHASE":
       return { ...state, phase: action.phase };
     default:
       return state;
@@ -67,14 +74,14 @@ function useGameManager(): GameContextValue {
   useEffect(() => {
     // Simulate a short loading / warm-up phase
     const timeout = setTimeout(() => {
-      dispatch({ type: 'SET_PHASE', phase: GAME_PHASE.BET });
+      dispatch({ type: "SET_PHASE", phase: GAME_PHASE.BET });
     }, 500);
 
     return () => clearTimeout(timeout);
   }, []);
 
   const setSelectedChipValue = (value: number) => {
-    dispatch({ type: 'SET_CHIP_VALUE', value });
+    dispatch({ type: "SET_CHIP_VALUE", value });
   };
 
   const placeBet = (positionId: string, amount?: number) => {
@@ -83,22 +90,22 @@ function useGameManager(): GameContextValue {
     game.table.currentSpin.placeBet(betAmount, positionId);
 
     // Trigger re-render for any consumers
-    dispatch({ type: 'TICK' });
+    dispatch({ type: "TICK" });
   };
 
   const deposit = (amount: number) => {
     game.table.player.deposit(amount);
-    dispatch({ type: 'TICK' });
+    dispatch({ type: "TICK" });
   };
 
   const newSpin = () => {
     game.table.newSpin();
-    dispatch({ type: 'TICK' });
+    dispatch({ type: "TICK" });
   };
 
   const runSpin = () => {
     game.table.currentSpin.run();
-    dispatch({ type: 'TICK' });
+    dispatch({ type: "TICK" });
   };
 
   // Expose state; `version` is only used to force updates
@@ -116,7 +123,9 @@ function useGameManager(): GameContextValue {
   };
 }
 
-export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const GameProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const value = useGameManager();
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
@@ -124,7 +133,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 export function useGame() {
   const context = useContext(GameContext);
   if (!context) {
-    throw new Error('useGame must be used within a GameProvider');
+    throw new Error("useGame must be used within a GameProvider");
   }
   return context;
 }

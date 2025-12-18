@@ -1,16 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import { ThreeEvent, useThree } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
-import { BvhPhysicsBody } from '@react-three/viverse/dist/physics';
-import * as THREE from 'three';
-import debug from 'debug';
-import { updateHighlights, resetHighlights } from '../helpers/highlights';
-import { MESH_TYPE_HIGHLIGHT, MESH_TYPE_POSITION } from '../constants';
+import React, { useEffect, useRef } from "react";
+import { ThreeEvent, useThree } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { BvhPhysicsBody } from "@react-three/viverse/dist/physics";
+import * as THREE from "three";
+import debug from "debug";
+import { updateHighlights, resetHighlights } from "../helpers/highlights";
+import { MESH_TYPE_HIGHLIGHT, MESH_TYPE_POSITION } from "../constants";
 
-const log = debug('roulette:layout');
-import { useGame, GAME_PHASE } from '../hooks/useGame';
+const log = debug("roulette:layout");
+import { useGame, GAME_PHASE } from "../hooks/useGame";
 
-const LAYOUT_PATH = `${import.meta.env.BASE_URL}blender/test.glb`.replace(/\/+/g, '/');
+const LAYOUT_PATH = `${import.meta.env.BASE_URL}blender/test.glb`.replace(
+  /\/+/g,
+  "/",
+);
 
 // Set to true to enable physics collision detection (requires all geometries to have compatible attributes)
 // Currently disabled due to geometry attribute compatibility issues
@@ -26,8 +29,10 @@ export const Layout: React.FC = () => {
     const layoutScene = gltf.scene;
 
     layoutScene.traverse((child: THREE.Object3D) => {
-      const isHighlight = typeof child.name === 'string' && child.name.charAt(0) === 'H';
-      const isPosition = typeof child.name === 'string' && child.name.charAt(0) === 'P';
+      const isHighlight =
+        typeof child.name === "string" && child.name.charAt(0) === "H";
+      const isPosition =
+        typeof child.name === "string" && child.name.charAt(0) === "P";
 
       // Normalize geometry attributes for BvhPhysicsBody compatibility
       if (child instanceof THREE.Mesh && child.geometry) {
@@ -45,7 +50,7 @@ export const Layout: React.FC = () => {
               uvArray[i * 2] = 0;
               uvArray[i * 2 + 1] = 0;
             }
-            geometry.setAttribute('uv', new THREE.BufferAttribute(uvArray, 2));
+            geometry.setAttribute("uv", new THREE.BufferAttribute(uvArray, 2));
           }
 
           // Ensure normal attribute exists (often required for proper merging)
@@ -55,8 +60,8 @@ export const Layout: React.FC = () => {
         }
       }
 
-      if (child.name === 'felt') {
-        child.userData = { type: 'felt' };
+      if (child.name === "felt") {
+        child.userData = { type: "felt" };
         child.traverse((children: THREE.Object3D) => {
           children.receiveShadow = true;
         });
@@ -87,7 +92,7 @@ export const Layout: React.FC = () => {
       }
 
       if (isPosition) {
-        const [name, proxy] = child.name.split('-');
+        const [name, proxy] = child.name.split("-");
         const positionId = name;
 
         child.userData.type = MESH_TYPE_POSITION;
@@ -112,13 +117,13 @@ export const Layout: React.FC = () => {
   const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     // Look through the intersection stack to find a betting position
     const positionIntersection = event.intersections?.find(
-      (i) => i.object.userData.type === MESH_TYPE_POSITION
+      (i) => i.object.userData.type === MESH_TYPE_POSITION,
     );
 
     const positionId = positionIntersection?.object.userData.positionId || null;
 
     if (positionId !== lastPositionRef.current) {
-      log('Hover changed: %s -> %s', lastPositionRef.current, positionId);
+      log("Hover changed: %s -> %s", lastPositionRef.current, positionId);
       lastPositionRef.current = positionId;
       updateHighlights(scene, positionId);
     }
@@ -134,7 +139,7 @@ export const Layout: React.FC = () => {
       userData.type === MESH_TYPE_POSITION &&
       userData.positionId
     ) {
-      log('Bet placed: %s (Value: %d)', userData.positionId, selectedChipValue);
+      log("Bet placed: %s (Value: %d)", userData.positionId, selectedChipValue);
       placeBet(userData.positionId as string);
     }
   };
@@ -163,5 +168,3 @@ export const Layout: React.FC = () => {
 };
 
 useGLTF.preload(LAYOUT_PATH);
-
-

@@ -9,10 +9,12 @@ Triplex is a development tool for building 3D scenes. The providers configured h
 ## Providers
 
 ### GlobalProvider
+
 - Sets up the root container with dark background
 - Configurable `backgroundColor` prop
 
 ### CanvasProvider
+
 - Wraps the 3D scene with Viverse
 - Sets up lighting (ambient and spot lights)
 - Configurable props:

@@ -3,7 +3,7 @@ name: Premerge
 on:
   pull_request:
     paths:
-      - '**'  # Trigger on any file changes
+      - "**" # Trigger on any file changes
 
 jobs:
   test:

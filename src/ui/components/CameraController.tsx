@@ -1,36 +1,33 @@
-import React, { useEffect } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
-import { Easing, Tween, update as TweenUpdate } from '@tweenjs/tween.js';
+import React, { useEffect } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { Easing, Tween, update as TweenUpdate } from "@tweenjs/tween.js";
 import {
   CAMERA_POSITION_FRONT,
   CAMERA_POSITION_OVERVIEW,
   CAMERA_POSITION_SIDE,
   CAMERA_POSITION_TOP,
-} from '../constants';
+} from "../constants";
 
 export const CameraController: React.FC = () => {
   const { camera } = useThree();
 
   useEffect(() => {
     const tweenTo = (pos: { x: number; y: number; z: number }) => {
-      new Tween(camera.position)
-        .to(pos, 1000)
-        .easing(Easing.Cubic.Out)
-        .start();
+      new Tween(camera.position).to(pos, 1000).easing(Easing.Cubic.Out).start();
     };
 
     const handleKey = (event: KeyboardEvent) => {
       switch (event.key) {
-        case '0':
+        case "0":
           tweenTo(CAMERA_POSITION_TOP);
           break;
-        case '1':
+        case "1":
           tweenTo(CAMERA_POSITION_FRONT);
           break;
-        case '2':
+        case "2":
           tweenTo(CAMERA_POSITION_SIDE);
           break;
-        case '3':
+        case "3":
           tweenTo(CAMERA_POSITION_OVERVIEW);
           break;
         default:
@@ -38,9 +35,9 @@ export const CameraController: React.FC = () => {
       }
     };
 
-    window.addEventListener('keypress', handleKey);
+    window.addEventListener("keypress", handleKey);
     return () => {
-      window.removeEventListener('keypress', handleKey);
+      window.removeEventListener("keypress", handleKey);
     };
   }, [camera]);
 
@@ -51,5 +48,3 @@ export const CameraController: React.FC = () => {
 
   return null;
 };
-
-

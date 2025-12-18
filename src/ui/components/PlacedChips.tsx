@@ -1,10 +1,10 @@
-import React from 'react';
-import * as THREE from 'three';
-import { useThree } from '@react-three/fiber';
-import { numberToChips } from '../helpers/number-to-chips';
-import { CHIP_HEIGHT } from '../constants';
-import { Chip } from './Chip';
-import { useGame } from '../hooks/useGame';
+import React from "react";
+import * as THREE from "three";
+import { useThree } from "@react-three/fiber";
+import { numberToChips } from "../helpers/number-to-chips";
+import { CHIP_HEIGHT } from "../constants";
+import { Chip } from "./Chip";
+import { useGame } from "../hooks/useGame";
 
 export const PlacedChips: React.FC = () => {
   const { game } = useGame();
@@ -23,7 +23,10 @@ export const PlacedChips: React.FC = () => {
     const amount = bets[positionId];
     const requiredChips = numberToChips(amount);
 
-    const obj = scene.getObjectByProperty('uuid', positionId) as THREE.Mesh | null;
+    const obj = scene.getObjectByProperty(
+      "uuid",
+      positionId,
+    ) as THREE.Mesh | null;
 
     if (!obj) {
       return;
@@ -64,5 +67,3 @@ export const PlacedChips: React.FC = () => {
     </>
   );
 };
-
-

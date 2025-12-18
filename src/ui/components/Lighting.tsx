@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const Lighting: React.FC = () => {
   return (
@@ -25,5 +25,3 @@ export const Lighting: React.FC = () => {
     </>
   );
 };
-
-

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * Global Provider - Rendered at the root of the component tree
@@ -6,7 +6,7 @@ import React from 'react';
  */
 export function GlobalProvider({
   children,
-  backgroundColor = '#05050a',
+  backgroundColor = "#05050a",
 }: {
   children?: React.ReactNode;
   backgroundColor?: string;
@@ -14,12 +14,12 @@ export function GlobalProvider({
   return (
     <div
       style={{
-        width: '100vw',
-        height: '100vh',
+        width: "100vw",
+        height: "100vh",
         backgroundColor,
         margin: 0,
         padding: 0,
-        overflow: 'hidden',
+        overflow: "hidden",
       }}
     >
       {children}

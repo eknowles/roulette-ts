@@ -1,16 +1,14 @@
 options:
   merge-default-rules: false
 files:
-  include: 'src/**/*.scss'
+  include: "src/**/*.scss"
 rules:
   indentation:
     - 2
-    -
-      size: 'tab'
+    - size: "tab"
   quotes:
     - 2
-    -
-      style: 'single'
+    - style: "single"
   extends-before-mixins: 1
   extends-before-declarations: 1
   mixins-before-declarations: 1
