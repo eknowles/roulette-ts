@@ -1,14 +1,22 @@
-import { useEffect, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useReducer, ReactNode } from 'react';
 import { Game } from '../../game';
 
-export type GamePhase = 'LOADING' | 'BET';
+export const GAME_PHASE = {
+  LOADING: 'LOADING',
+  BET: 'BET',
+} as const;
 
-export interface UseGameStateResult {
+export type GamePhase = typeof GAME_PHASE[keyof typeof GAME_PHASE];
+
+export interface GameContextValue {
   game: Game;
   phase: GamePhase;
   selectedChipValue: number;
   setSelectedChipValue: (value: number) => void;
   placeBet: (positionId: string, amount?: number) => void;
+  deposit: (amount: number) => void;
+  newSpin: () => void;
+  runSpin: () => void;
 }
 
 type Action =
@@ -25,7 +33,7 @@ interface State {
 const initialState: State = {
   version: 0,
   selectedChipValue: 1,
-  phase: 'LOADING',
+  phase: GAME_PHASE.LOADING,
 };
 
 function reducer(state: State, action: Action): State {
@@ -41,7 +49,12 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export function useGameState(): UseGameStateResult {
+const GameContext = createContext<GameContextValue | null>(null);
+
+/**
+ * useGameManager - Internal hook to manage game state
+ */
+function useGameManager(): GameContextValue {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const game = useMemo(() => {
@@ -54,7 +67,7 @@ export function useGameState(): UseGameStateResult {
   useEffect(() => {
     // Simulate a short loading / warm-up phase
     const timeout = setTimeout(() => {
-      dispatch({ type: 'SET_PHASE', phase: 'BET' });
+      dispatch({ type: 'SET_PHASE', phase: GAME_PHASE.BET });
     }, 500);
 
     return () => clearTimeout(timeout);
@@ -73,6 +86,21 @@ export function useGameState(): UseGameStateResult {
     dispatch({ type: 'TICK' });
   };
 
+  const deposit = (amount: number) => {
+    game.table.player.deposit(amount);
+    dispatch({ type: 'TICK' });
+  };
+
+  const newSpin = () => {
+    game.table.newSpin();
+    dispatch({ type: 'TICK' });
+  };
+
+  const runSpin = () => {
+    game.table.currentSpin.run();
+    dispatch({ type: 'TICK' });
+  };
+
   // Expose state; `version` is only used to force updates
   void state.version;
 
@@ -82,7 +110,21 @@ export function useGameState(): UseGameStateResult {
     selectedChipValue: state.selectedChipValue,
     setSelectedChipValue,
     placeBet,
+    deposit,
+    newSpin,
+    runSpin,
   };
 }
 
+export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const value = useGameManager();
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
+};
 
+export function useGame() {
+  const context = useContext(GameContext);
+  if (!context) {
+    throw new Error('useGame must be used within a GameProvider');
+  }
+  return context;
+}

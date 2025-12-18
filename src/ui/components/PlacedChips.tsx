@@ -4,7 +4,7 @@ import { useThree } from '@react-three/fiber';
 import { numberToChips } from '../helpers/number-to-chips';
 import { CHIP_HEIGHT } from '../constants';
 import { Chip } from './Chip';
-import { useGame } from './RouletteApp';
+import { useGame } from '../hooks/useGame';
 
 export const PlacedChips: React.FC = () => {
   const { game } = useGame();

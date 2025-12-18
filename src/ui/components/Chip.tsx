@@ -3,14 +3,15 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { Easing, Tween } from '@tweenjs/tween.js';
 
-const CHIP_MODEL_PATH = '/roulette-ts/blender/chip.glb';
+const BASE_URL = import.meta.env.BASE_URL.replace(/\/+/g, '/');
+const CHIP_MODEL_PATH = `${BASE_URL}blender/chip.glb`.replace(/\/+/g, '/');
 
 export const textureMaps: Record<string, string> = {
-  C_1: '/roulette-ts/blender/1.jpg',
-  C_5: '/roulette-ts/blender/5.jpg',
-  C_10: '/roulette-ts/blender/10.jpg',
-  C_25: '/roulette-ts/blender/25.jpg',
-  C_50: '/roulette-ts/blender/50.jpg',
+  C_1: `${BASE_URL}blender/1.jpg`.replace(/\/+/g, '/'),
+  C_5: `${BASE_URL}blender/5.jpg`.replace(/\/+/g, '/'),
+  C_10: `${BASE_URL}blender/10.jpg`.replace(/\/+/g, '/'),
+  C_25: `${BASE_URL}blender/25.jpg`.replace(/\/+/g, '/'),
+  C_50: `${BASE_URL}blender/50.jpg`.replace(/\/+/g, '/'),
 };
 
 interface ChipProps {
@@ -26,6 +27,10 @@ export const Chip: React.FC<ChipProps> = ({ position, chipTexture, isTop }) => {
 
   const mesh = useMemo(() => {
     const base = gltf.scene.getObjectByName('chip') as THREE.Mesh;
+    if (!base) {
+      console.warn('Chip mesh not found in model');
+      return new THREE.Mesh();
+    }
     const clone = base.clone();
     // Match original scaling / shadow behavior
     clone.scale.set(0.47, 0.47, 0.47);
