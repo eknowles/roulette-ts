@@ -1,5 +1,5 @@
 language: node_js
-node_js: '8.9.4'
+node_js: "8.9.4"
 cache: yarn
 notifications:
   email: false
@@ -10,4 +10,4 @@ script:
   - npm run test:coverage
   - npm run build
 after_script:
-  - 'cat coverage/lcov.info | ./node_modules/.bin/coveralls'
+  - "cat coverage/lcov.info | ./node_modules/.bin/coveralls"

@@ -1,5 +1,5 @@
-import { Player } from './player';
-import { Table } from './table';
+import { Player } from "./player";
+import { Table } from "./table";
 
 export class Game {
   public table: Table;

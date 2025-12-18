@@ -16,26 +16,43 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.0.0",
+    "@react-three/viverse": "^0.2.10",
     "@tweenjs/tween.js": "^23.1.3",
     "coveralls": "^3.1.1",
     "dat.gui": "^0.7.9",
+    "debug": "^4.4.3",
     "jest": "^30.2.0",
+    "leva": "^0.10.1",
     "lodash": "^4.17.21",
     "nanoid": "^5.1.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "three": "^0.182.0",
     "vite": "^7.3.0"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.0.11",
+    "@types/debug": "^4.1.12",
     "@types/jasmine": "^5.1.13",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.21",
     "@types/node": "^25.0.3",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/three": "^0.182.0",
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
     "sass": "^1.97.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.50.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
   }
 }

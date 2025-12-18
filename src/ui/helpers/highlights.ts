@@ -1,45 +1,62 @@
-import { Mesh, Object3D, Scene, PlaneGeometry, MeshPhongMaterial, Object3DEventMap } from 'three';
-import { POSITIONS } from '../../game/constants/positions';
-import { MESH_TYPE_HIGHLIGHT } from '../constants';
+import { Mesh, Scene, MeshPhongMaterial } from "three";
+import debug from "debug";
+import { POSITIONS } from "../../game/constants/positions";
+import { MESH_TYPE_HIGHLIGHT } from "../constants";
 
-type HighlightMesh = Mesh<PlaneGeometry, MeshPhongMaterial, Object3DEventMap>;
+const log = debug("roulette:highlights");
 
-export function resetHighlights(scene: Scene) {
-  scene.traverse((object) => {
-    if (object.userData.type === MESH_TYPE_HIGHLIGHT) {
-      object.children.forEach((child: HighlightMesh) => {
-        if (child.material) {
-          child.material.setValues({opacity: 0});
+// Precalculate highlight sets for all positions
+const positionHighlights = new Map<string, Set<string>>();
+
+Object.values(POSITIONS).forEach((pos) => {
+  const ids = new Set<string>();
+  pos.winners.forEach((w) => ids.add(`H_${w}`));
+  pos.highlights?.forEach((h) => ids.add(h));
+  positionHighlights.set(pos.id, ids);
+});
+
+/**
+ * Updates highlights in the scene based on the hovered position.
+ */
+export function updateHighlights(scene: Scene, positionId: string | null) {
+  const activeHighlightIds = positionId
+    ? positionHighlights.get(positionId) || new Set<string>()
+    : new Set<string>();
+
+  if (positionId) {
+    log(
+      "Active Position: %s, Highlighting: %o",
+      positionId,
+      Array.from(activeHighlightIds),
+    );
+  } else {
+    log("Clearing highlights");
+  }
+
+  scene.traverse((obj) => {
+    if (obj.userData.type === MESH_TYPE_HIGHLIGHT) {
+      // Get the base name (e.g., H_1 from H_1-proxy)
+      const baseId = obj.name.split("-")[0];
+      const isTarget = activeHighlightIds.has(baseId);
+      const opacity = isTarget ? 0.3 : 0;
+
+      // Update opacity on the object and its mesh children
+      if (obj instanceof Mesh && obj.material) {
+        (obj.material as MeshPhongMaterial).opacity = opacity;
+      }
+      obj.children.forEach((child) => {
+        if (child instanceof Mesh && child.material) {
+          (child.material as MeshPhongMaterial).opacity = opacity;
         }
       });
     }
   });
 }
 
-export function highlightPosition(scene: Scene, positionId: string) {
-  const position = POSITIONS[positionId];
-
-  if (!position) {
-    return;
-  }
-
-  const highlightedNames = position.winners.map((num) => `H_${num}`);
-
-  highlightedNames.forEach((name) => {
-    const obj = scene.getObjectByName(name);
-    highlightChildren(obj);
-  });
-
-  if (position.highlights) {
-    position.highlights.forEach((name) => {
-      const obj = scene.getObjectByName(name);
-      highlightChildren(obj);
-    });
-  }
+export function resetHighlights(scene: Scene) {
+  updateHighlights(scene, null);
 }
 
-function highlightChildren(obj: Object3D) {
-  obj.children.forEach((child: HighlightMesh) => {
-    child.material.setValues({opacity: 0.2});
-  });
+export function highlightPosition(scene: Scene, positionId: string) {
+  updateHighlights(scene, positionId);
 }
