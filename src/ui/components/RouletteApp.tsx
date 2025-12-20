@@ -8,6 +8,7 @@ import { Layout } from "./Layout";
 import { PlacedChips } from "./PlacedChips";
 import { CameraController } from "./CameraController";
 import { ChipTexturePreloader } from "./Chip";
+import { BankStack } from "./BankStack";
 
 export const RouletteApp: React.FC = () => {
   return (
@@ -29,6 +30,16 @@ export const RouletteApp: React.FC = () => {
             <ChipTexturePreloader />
             <Layout />
             <PlacedChips />
+            <BankStack
+              cylinderHeight={0.22}
+              cylinderOpacity={0.08}
+              chipsPerStack={20}
+              cylinderRadius={0.38}
+              maxStacks={undefined}
+              positionY={0.02}
+              positionZ={-1.76}
+              positionX={-0.7}
+            />
             <OrbitControls enablePan={false} enableZoom={false} />
           </Suspense>
         </Canvas>

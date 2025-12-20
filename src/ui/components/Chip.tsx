@@ -15,12 +15,18 @@ export const textureMaps: Record<string, string> = {
 };
 
 interface ChipProps {
-  position: [number, number, number];
-  chipTexture: string;
-  isTop: boolean;
+  position?: [number, number, number];
+  chipTexture?: string;
+  isTop?: boolean;
+  rotationY?: number;
 }
 
-export const Chip: React.FC<ChipProps> = ({ position, chipTexture, isTop }) => {
+export const Chip: React.FC<ChipProps> = ({
+  position = [0, 0, 0],
+  chipTexture = "C_1",
+  isTop = false,
+  rotationY = 0,
+}) => {
   const gltf = useGLTF(CHIP_MODEL_PATH) as unknown as { scene: THREE.Scene };
   const textures = useTexture(textureMaps) as Record<string, THREE.Texture>;
   const groupRef = useRef<THREE.Group>(null);
@@ -88,7 +94,9 @@ export const Chip: React.FC<ChipProps> = ({ position, chipTexture, isTop }) => {
       // Non-top chips snap into place for stacking
       groupRef.current.position.set(x, y, z);
     }
-  }, [isTop, mesh, x, y, z]);
+
+    groupRef.current.rotation.y = rotationY;
+  }, [isTop, mesh, x, y, z, rotationY]);
 
   return (
     <group ref={groupRef}>

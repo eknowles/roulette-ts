@@ -4,6 +4,7 @@ import { GameProvider } from "../hooks/useGame";
 import { Lighting } from "./Lighting";
 import { Layout } from "./Layout";
 import { PlacedChips } from "./PlacedChips";
+import { BankStack } from "./BankStack";
 import { CameraController } from "./CameraController";
 import { ChipTexturePreloader } from "./Chip";
 
@@ -22,6 +23,11 @@ export const RouletteScene: React.FC = () => {
         <ChipTexturePreloader />
         <Layout />
         <PlacedChips />
+        <BankStack
+          cylinderHeight={1.84}
+          cylinderOpacity={0.04}
+          chipsPerStack={20}
+        />
         <OrbitControls enablePan={false} enableZoom={false} />
       </Suspense>
     </GameProvider>
